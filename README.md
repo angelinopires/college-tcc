@@ -88,4 +88,4 @@ Run `npm run build` to build the project. The build artifacts will be stored in 
 ## Open Source
 This is a *Open Source* project. If you see anything that can be improved, just help us to build a better Angular Boot!
 
-### Updated at: 31/08/2019
+### Updated at: 01/09/2019

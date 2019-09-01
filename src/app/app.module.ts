@@ -12,17 +12,17 @@ import { HomeComponent } from './pages/home/home.component';
 
 registerLocaleData(localePt, 'pt');
 @NgModule({
-  declarations: [
-	AppComponent,
-	HomeComponent
-  ],
-  imports: [
-    CoreModule,
-    BrowserModule,
-    AppRoutingModule,
-    RouterModule,
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+	declarations: [
+		AppComponent,
+		HomeComponent
+	],
+	imports: [
+		CoreModule,
+		BrowserModule,
+		AppRoutingModule,
+		RouterModule,
+	],
+	providers: [],
+	bootstrap: [AppComponent]
 })
 export class AppModule { }
