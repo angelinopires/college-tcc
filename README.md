@@ -1,23 +1,91 @@
-# SevenwavesFront
+# Angular7-boot
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.8.
 
+## How to maintain the project
+
+- There 2 main modules in this project: User and Admin. They're following the Lazy loading concept of Angular.
+- If you want to create more modules, follow the actual structure.
+- Create a component for every reusable snippet of your system.
+- Try to create Models for all complex datas;
+- Abuse of pipes and other angular features.
+
+## Folder structure
+
+```
+src
+├── app
+│   ├── admin
+│   │   ├── admin
+│   │   │   └── admin.component.ts
+│   │   ├── admin.module.ts
+│   │   ├── admin-routing.module.ts
+│   │   └── dashboard
+│   │       └── dashboard.component.ts
+│   ├── app.component.ts
+│   ├── app.module.ts
+│   ├── app.routing.ts
+│   ├── core
+│   │   ├── core.module.ts
+│   │   ├── models
+│   │   ├── pipes
+│   │   ├── services
+│   │   │   ├── api.service.ts
+│   │   │   └── loading.service.ts
+│   │   └── utils
+│   ├── pages
+│   │   └── home
+│   │       └── home.component.ts
+│   ├── shared
+│   │   ├── internal-structure
+│   │   │   └── internal-structure.component.ts
+│   │   ├── layout
+│   │   │   └── layout.component.ts
+│   │   ├── loading
+│   │   │   └── loading.component.ts
+│   │   └── modal
+│   │       └── modal.component.ts
+│   └── user
+│       ├── dashboard
+│       │   └── dashboard.component.ts
+│       ├── user
+│       │   └── user.component.ts
+│       ├── user.module.ts
+│       └── user-routing.module.ts
+├── assets
+│   ├── img
+│   └── scss
+│       ├── _global.scss
+│       ├── _mixins.scss
+│       └── _variables.scss
+├── browserslist
+├── environments
+│   ├── environment.prod.ts
+│   └── environment.ts
+├── favicon.ico
+├── index.html
+├── main.ts
+├── polyfills.ts
+├── styles.scss
+├── test.ts
+├── tsconfig.app.json
+├── tsconfig.spec.json
+└── tslint.json
+```
+
 ## Development server
 
-Run `npm start` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `npm run dev` for a dev server. Them a new browser window will open.The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive | pipe | service | class  guard | interface | enum | module`.
 
 ## Build
 
-Run `npm run dev` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Run `npm run build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
+## Open Source
+This is a *Open Source* project. If you see anything that can be improved, just help us to build a better Angular Boot!
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+### Updated at: 31/08/2019
