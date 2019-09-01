@@ -2,6 +2,13 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.8.
 
+## How to start:
+
+1. First, we'll need Node.js and NPM: https://www.npmjs.com/
+2. Also, we'll need the Angular CLI for this project: https://angular.io/cli
+3. Finally, clone the project and run *npm install* on the main folder.
+4. Run *npm run dev* and that's it! 
+
 ## How to maintain the project
 
 - There 2 main modules in this project: User and Admin. They're following the Lazy loading concept of Angular.
