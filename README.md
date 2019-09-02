@@ -7,7 +7,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 1. First, we'll need Node.js and NPM: https://www.npmjs.com/
 2. Also, we'll need the Angular CLI for this project: https://angular.io/cli
 3. Finally, clone the project and run *npm install* on the main folder.
-4. Run *npm run dev* and that's it! 
+4. Run *npm run dev* and that's it!
 
 ## How to maintain the project
 
@@ -65,7 +65,6 @@ src
 │       ├── _global.scss
 │       ├── _mixins.scss
 │       └── _variables.scss
-├── browserslist
 ├── environments
 │   ├── environment.prod.ts
 │   └── environment.ts
