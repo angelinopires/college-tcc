@@ -1,12 +1,12 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component, OnInit, OnDestroy, Input } from "@angular/core";
+import { Subscription } from "rxjs";
 
-import { LoadingService } from 'src/app/core/services/loading.service';
+import { LoadingService } from "src/app/services/loading.service";
 
 @Component({
-  selector: 'app-loading',
-  templateUrl: './loading.component.html',
-  styleUrls: ['./loading.component.scss']
+  selector: "app-loading",
+  templateUrl: "./loading.component.html",
+  styleUrls: ["./loading.component.scss"],
 })
 export class LoadingComponent implements OnInit, OnDestroy {
   @Input() isVisible = false;
@@ -15,14 +15,17 @@ export class LoadingComponent implements OnInit, OnDestroy {
 
   private loadingSubscription: Subscription;
 
-  constructor(private loadingService: LoadingService) { }
+  constructor(private loadingService: LoadingService) {}
 
   ngOnInit() {
-    this.loadingSubscription = this.loadingService.isLoading.subscribe(data => {
-      this.isLoading = data;
-    }, error => {
-      console.log('error loadingSubscription', error);
-    })
+    this.loadingSubscription = this.loadingService.isLoading.subscribe(
+      (data) => {
+        this.isLoading = data;
+      },
+      (error) => {
+        console.log("error loadingSubscription", error);
+      }
+    );
   }
 
   ngOnDestroy() {
@@ -30,5 +33,4 @@ export class LoadingComponent implements OnInit, OnDestroy {
       this.loadingSubscription.unsubscribe();
     }
   }
-
 }
