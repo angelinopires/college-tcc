@@ -1,10 +1,17 @@
-import { Component, OnInit, Input, Output, ViewChild, ElementRef } from '@angular/core';
-import { EventEmitter } from 'events';
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  ViewChild,
+  ElementRef,
+} from "@angular/core";
+import { EventEmitter } from "events";
 
 @Component({
-  selector: 'app-modal',
-  templateUrl: './modal.component.html',
-  styleUrls: ['./modal.component.scss']
+  selector: "app-modal",
+  templateUrl: "./modal.component.html",
+  styleUrls: ["./modal.component.scss"],
 })
 export class ModalComponent implements OnInit {
   @Input() isVisible = false;
@@ -14,15 +21,13 @@ export class ModalComponent implements OnInit {
   @Input() hasHeader = true;
   @Input() hasFooter = true;
 
-  @Output() close = new EventEmitter;
+  @Output() close = new EventEmitter();
 
-  @ViewChild('modalContent') modalContent: ElementRef;
+  @ViewChild("modalContent") modalContent: ElementRef;
 
   isModal = true;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }
