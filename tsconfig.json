@@ -10,12 +10,34 @@
     "moduleResolution": "node",
     "outDir": "./dist/out-tsc",
     "paths": {
+      "@admin": [
+        "src/app/modules/admin"
+      ],
       "@admin/*": ["src/app/modules/admin/*"],
-      "@admin": ["src/app/modules/admin"],
-      "@services/*": ["src/app/services/*"],
-      "@services": ["src/app/services"],
-      "@user/*": ["src/app/modules/user/*"],
-      "@user": ["src/app/modules/ser"]
+      "@home": [
+        "src/app/modules/home"
+      ],
+      "@home/*": [
+        "src/app/modules/home/*"
+      ],
+      "@services": [
+        "src/app/services"
+      ],
+      "@services/*": [
+        "src/app/services/*"
+      ],
+      "@shared": [
+        "src/app/shared"
+      ],
+      "@shared/*": [
+        "src/app/shared/*"
+      ],
+      "@user": [
+        "src/app/user"
+      ],
+      "@user/*": [
+        "src/app/modules/user/*"
+      ]
     },
     "sourceMap": true,
     "target": "es5",
