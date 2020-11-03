@@ -1,4 +1,4 @@
-<h1 align="center">Angular Fast Boot</h1>
+<h1 align="center">TG de Compras - Fatec ADS</h1>
 
 <div align="center">
 
@@ -6,7 +6,7 @@
 <br>
 <br>
 
-This repository will make your life easier when you want to build an application with Angular.
+Este repositório se trata do código front-end do meu trabalho de TG na Fatec Sorocaba. Este projeto é baseado [neste boot de Angular.](https://github.com/angelinopires/angular-fast-boot)
 
 </div>
 
@@ -21,7 +21,7 @@ This repository will make your life easier when you want to build an application
 2. Run this
 
 ```md
-\$ npm i && npm start
+$ npm i && npm start
 ```
 
 3. Open your favorite browser at **localhost:4200** address
@@ -32,11 +32,8 @@ This repository will make your life easier when you want to build an application
 ```md
 $ npm start -> Run the application in development mode
 $ npm run install:clean -> Clear everything and install
-\$ npm run build -> Run the application in the production mode
+$ npm run build -> Run the application in the production mode
 ```
 
-## 🤗 How to contribute
-
-If you have any idea to improve this repository, please submit 🙌
-
-#### Last update: 01/09/2020
+## 📜 License
+<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Licença Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a><br />Este trabalho está licenciado com uma Licença <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons - Atribuição-NãoComercial 4.0 Internacional</a>.
