@@ -1,20 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { InternalStructureComponent } from './internal-structure/internal-structure.component';
-import { LayoutComponent } from './layout/layout.component';
-import { LoadingComponent } from './loading/loading.component';
-import { ModalComponent } from './modal/modal.component';
+import { LoadingComponent } from './components/loading/loading.component';
+import { MenuComponent } from './components/menu/menu.component';
 
 @NgModule({
-  declarations: [
-	  InternalStructureComponent,
-	  LayoutComponent,
-	  LoadingComponent,
-	  ModalComponent
-  ],
-  imports: [
-    CommonModule
-  ]
+  declarations: [LoadingComponent, MenuComponent],
+  exports: [MenuComponent],
+  imports: [CommonModule]
 })
-export class SharedModule { }
+export class SharedModule {}

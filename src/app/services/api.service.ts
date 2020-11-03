@@ -1,11 +1,11 @@
-import { Injectable } from "@angular/core";
-import { HttpClient, HttpParams } from "@angular/common/http";
-import { Router } from "@angular/router";
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Router } from '@angular/router';
 
-import { Observable, throwError } from "rxjs";
-import { catchError } from "rxjs/operators";
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
-import { environment } from "src/environments/environment";
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class ApiService {
@@ -15,8 +15,8 @@ export class ApiService {
     return this.http
       .get(`${environment.api_url}${path}`, {
         headers: {
-          "Content-Type": "application/json",
-        },
+          'Content-Type': 'application/json'
+        }
       })
       .pipe(catchError((err) => this.handleError(err, this.router)));
   }
@@ -25,8 +25,8 @@ export class ApiService {
     return this.http
       .post(`${environment.api_url}${path}`, JSON.stringify(body), {
         headers: {
-          "Content-Type": "application/json",
-        },
+          'Content-Type': 'application/json'
+        }
       })
       .pipe(
         catchError((err) => {
@@ -40,12 +40,12 @@ export class ApiService {
     return this.http
       .put(`${environment.api_url}${path}`, JSON.stringify(body), {
         headers: {
-          "Content-Type": "application/json",
-        },
+          'Content-Type': 'application/json'
+        }
       })
       .pipe(
         catchError((err) => {
-          console.log("errrrrrr put ", err);
+          console.log('errrrrrr put ', err);
           return this.handleError(err, this.router);
         })
       );
@@ -55,22 +55,22 @@ export class ApiService {
     return this.http
       .delete(`${environment.api_url}${path}`, {
         headers: {
-          "Content-Type": "application/json",
-        },
+          'Content-Type': 'application/json'
+        }
       })
       .pipe(
         catchError((err) => {
-          console.log("errrrrrr", err);
+          console.log('errrrrrr', err);
           return this.handleError(err, this.router);
         })
       );
   }
 
   handleError({ error }, _router: Router) {
-    console.log("handleError this = ", error);
-    if (error.error && error.error.code === "UNAUTHORIZED") {
-      console.log("caiu no não autorizado");
-      _router.navigate(["/"]);
+    console.log('handleError this = ', error);
+    if (error.error && error.error.code === 'UNAUTHORIZED') {
+      console.log('caiu no não autorizado');
+      _router.navigate(['/']);
     }
     return throwError(error);
   }

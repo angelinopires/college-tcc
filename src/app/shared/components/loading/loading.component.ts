@@ -1,12 +1,12 @@
-import { Component, OnInit, OnDestroy, Input } from "@angular/core";
-import { Subscription } from "rxjs";
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Subscription } from 'rxjs';
 
-import { LoadingService } from "src/app/services/loading.service";
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
-  selector: "app-loading",
-  templateUrl: "./loading.component.html",
-  styleUrls: ["./loading.component.scss"],
+  selector: 'app-loading',
+  templateUrl: './loading.component.html',
+  styleUrls: ['./loading.component.scss']
 })
 export class LoadingComponent implements OnInit, OnDestroy {
   @Input() isVisible = false;
@@ -23,7 +23,7 @@ export class LoadingComponent implements OnInit, OnDestroy {
         this.isLoading = data;
       },
       (error) => {
-        console.log("error loadingSubscription", error);
+        console.log('error loadingSubscription', error);
       }
     );
   }
