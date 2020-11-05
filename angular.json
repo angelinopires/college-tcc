@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular7-boot": {
+    "compras-frontend": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -67,8 +67,7 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
-              "namedChunks": false,
+              "namedChunks": true,
               "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -86,18 +85,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "angular7-boot:build"
+            "browserTarget": "compras-frontend:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "angular7-boot:build:production"
+              "browserTarget": "compras-frontend:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular7-boot:build"
+            "browserTarget": "compras-frontend:build"
           }
         },
         "test": {
@@ -128,9 +127,17 @@
               "**/node_modules/**"
             ]
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "baseHref": "https://angelinopires.github.io/compras-frontend/",
+            "name": "Angelino Oliveira",
+            "email": "lino.pires@live.com"
+          }
         }
       }
     }
   },
-  "defaultProject": "angular7-boot"
+  "defaultProject": "compras-frontend"
 }
