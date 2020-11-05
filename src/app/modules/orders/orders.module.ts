@@ -3,19 +3,19 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 // COMPONENTS
-import { DashboardComponent } from './pages';
+import { DashboardComponent } from '@orders/pages';
 
 // MODULES
-import { HomeRoutingModule } from './home-routing.module';
+import { OrdersRoutingModule } from './orders-routing.module';
 import { SharedModule } from '@shared/shared.module';
 
-// PROVIDERS
+// SERVICES
 import { ApiService } from '@services/api.service';
 
 @NgModule({
   declarations: [DashboardComponent],
   exports: [RouterModule],
-  imports: [CommonModule, HomeRoutingModule, SharedModule],
+  imports: [CommonModule, OrdersRoutingModule, SharedModule],
   providers: [ApiService]
 })
-export class HomeModule {}
+export class OrdersModule {}
