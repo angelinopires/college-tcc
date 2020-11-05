@@ -1,7 +1,7 @@
+import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
-import { BrowserModule } from '@angular/platform-browser';
 
 const routes: Routes = [
   {
@@ -9,12 +9,28 @@ const routes: Routes = [
     loadChildren: './modules/home/home.module#HomeModule'
   },
   {
-    path: 'user',
-    loadChildren: './modules/user/user.module#UserModule'
+    path: 'cotacoes',
+    loadChildren: './modules/prices/prices.module#PricesModule'
   },
   {
-    path: 'admin',
-    loadChildren: './modules/admin/admin.module#AdminModule'
+    path: 'fornecedores',
+    loadChildren: './modules/providers/providers.module#ProvidersModule'
+  },
+  {
+    path: 'materiais',
+    loadChildren: './modules/materials/materials.module#MaterialsModule'
+  },
+  {
+    path: 'pedidos',
+    loadChildren: './modules/orders/orders.module#OrdersModule'
+  },
+  {
+    path: 'solicitacoes',
+    loadChildren: './modules/requests/requests.module#RequestsModule'
+  },
+  {
+    path: 'usuarios',
+    loadChildren: './modules/users/users.module#UsersModule'
   },
   { path: '**', redirectTo: '/', pathMatch: 'full' }
 ];

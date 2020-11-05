@@ -10,15 +10,41 @@
     "moduleResolution": "node",
     "outDir": "./dist/out-tsc",
     "paths": {
-      "@admin": [
-        "src/app/modules/admin"
-      ],
-      "@admin/*": ["src/app/modules/admin/*"],
       "@home": [
         "src/app/modules/home"
       ],
       "@home/*": [
         "src/app/modules/home/*"
+      ],
+      "@materials": [
+        "src/app/modules/materials"
+      ],
+      "@materials/*": [
+        "src/app/modules/materials/*"
+      ],
+      "@orders": [
+        "src/app/modules/orders"
+      ],
+      "@orders/*": [
+        "src/app/modules/orders/*"
+      ],
+      "@prices": [
+        "src/app/modules/prices"
+      ],
+      "@prices/*": [
+        "src/app/modules/prices/*"
+      ],
+      "@providers": [
+        "src/app/modules/providers"
+      ],
+      "@providers/*": [
+        "src/app/modules/providers/*"
+      ],
+      "@requests": [
+        "src/app/modules/requests"
+      ],
+      "@requests/*": [
+        "src/app/modules/requests/*"
       ],
       "@services": [
         "src/app/services"
@@ -32,11 +58,11 @@
       "@shared/*": [
         "src/app/shared/*"
       ],
-      "@user": [
-        "src/app/user"
+      "@users": [
+        "src/app/modules/users"
       ],
-      "@user/*": [
-        "src/app/modules/user/*"
+      "@users/*": [
+        "src/app/modules/users/*"
       ]
     },
     "sourceMap": true,

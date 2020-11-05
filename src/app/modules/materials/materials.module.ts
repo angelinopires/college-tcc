@@ -1,21 +1,21 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 
 // COMPONENTS
 import { DashboardComponent } from './pages';
 
 // MODULES
-import { HomeRoutingModule } from './home-routing.module';
+import { MaterialsRoutingModule } from './materials-routing.module';
 import { SharedModule } from '@shared/shared.module';
 
-// PROVIDERS
+// SERVICES
 import { ApiService } from '@services/api.service';
 
 @NgModule({
   declarations: [DashboardComponent],
   exports: [RouterModule],
-  imports: [CommonModule, HomeRoutingModule, SharedModule],
+  imports: [CommonModule, MaterialsRoutingModule, SharedModule],
   providers: [ApiService]
 })
-export class HomeModule {}
+export class MaterialsModule {}
