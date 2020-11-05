@@ -14,8 +14,7 @@ import { ApiService } from '@services/api.service';
 
 @NgModule({
   declarations: [DashboardComponent],
-  exports: [RouterModule],
-  imports: [CommonModule, OrdersRoutingModule, SharedModule],
+  imports: [CommonModule, OrdersRoutingModule, RouterModule, SharedModule],
   providers: [ApiService]
 })
 export class OrdersModule {}

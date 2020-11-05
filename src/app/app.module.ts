@@ -9,13 +9,13 @@ import { AppComponent } from './app.component';
 
 // MODULES
 import { AppRoutingModule } from './app.routing';
+import { SharedModule } from '@shared/shared.module';
 
 registerLocaleData(localePt, 'pt');
 
 @NgModule({
+  bootstrap: [AppComponent],
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, RouterModule],
-  providers: [],
-  bootstrap: [AppComponent]
+  imports: [BrowserModule, AppRoutingModule, RouterModule, SharedModule]
 })
 export class AppModule {}

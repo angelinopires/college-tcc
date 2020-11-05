@@ -1,0 +1,15 @@
+<nav role="navigation">
+  <div class="menu">
+    <input class="menu__checkbox" type="checkbox" />
+    <span class="menu__line"></span>
+    <span class="menu__line"></span>
+    <span class="menu__line"></span>
+
+    <ul class="menu__list">
+      <a class="menu__link" *ngFor="let route of routes" routerLink="{{ route.path }}"
+        routerLinkActive="menu__link--active" [routerLinkActiveOptions]="{exact: true}">
+        <li class=" menu__item">{{ route.label }}</li>
+      </a>
+    </ul>
+  </div>
+</nav>
