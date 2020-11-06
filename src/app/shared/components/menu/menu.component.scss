@@ -1,37 +1,38 @@
+@import "variables";
+
 $menu-transition-type: cubic-bezier(0.77, 0.2, 0.05, 1);
 $menu-transition-time: 500ms;
 
 .menu {
   position: relative;
-  top: 50px;
-  left: 50px;
-  z-index: 1;
+  z-index: 4;
   display: block;
+  width: 32px;
+  height: 22px;
   user-select: none;
 
   &__list {
     position: absolute;
+    top: -1rem;
     width: 300px;
-    margin: -100px 0 0 -50px;
-    padding: 50px;
-    padding-top: 125px;
+    height: 100vh;
+    padding: 5rem 1rem 1rem;
     list-style-type: none;
-    background: #ededed;
-    transform: translate(-100%, 0);
-    transform-origin: 0% 0%;
+    background: lighten($primary-color, 3%);
+    transform: translateX(-400px);
     transition: transform $menu-transition-time $menu-transition-type;
     -webkit-font-smoothing: antialiased;
   }
 
   &__item {
-    padding: 10px 0;
-    font-size: 22px;
+    margin-bottom: 1rem;
+    color: $white;
+    font-weight: 400;
+    font-size: 1.2rem;
   }
 
   &__link {
-    color: #232323;
     text-decoration: none;
-    transition: color 0.3s ease;
 
     &:hover {
       color: tomato;
@@ -49,7 +50,7 @@ $menu-transition-time: 500ms;
     width: 33px;
     height: 4px;
     margin-bottom: 5px;
-    background: #cdcdcd;
+    background: $white;
     border-radius: 3px;
     transform-origin: 4px 0;
     transition:
@@ -80,11 +81,10 @@ $menu-transition-time: 500ms;
 
     &:checked {
       & ~ .menu__list {
-        transform: none;
+        transform: translateX(-1rem);
       }
 
       & ~ .menu__line {
-        background: #232323;
         transform: rotate(45deg) translate(-2px, -1px);
         opacity: 1;
 

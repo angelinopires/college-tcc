@@ -1,0 +1,18 @@
+@import "variables";
+
+.header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 54px;
+  padding: 1rem;
+  padding-left: 1rem;
+  background-color: $primary-color;
+
+  &__title {
+    color: $white;
+    font-weight: 500;
+    font-size: 1.5rem;
+  }
+}

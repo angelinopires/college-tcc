@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { DashboardComponent } from '@requests/pages';
 
 // MODULES
+import { MaterialUiModule } from '@material-ui/material-ui.module';
 import { RequestsRoutingModule } from './requests-routing.module';
 import { SharedModule } from '@shared/shared.module';
 
@@ -14,7 +15,13 @@ import { ApiService } from '@services/api.service';
 
 @NgModule({
   declarations: [DashboardComponent],
-  imports: [CommonModule, RequestsRoutingModule, RouterModule, SharedModule],
+  imports: [
+    CommonModule,
+    MaterialUiModule,
+    RequestsRoutingModule,
+    RouterModule,
+    SharedModule
+  ],
   providers: [ApiService]
 })
 export class RequestsModule {}

@@ -37,8 +37,8 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    CommonModule,
     BrowserModule,
+    CommonModule,
     RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })
   ],
   exports: [RouterModule]
