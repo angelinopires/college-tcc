@@ -1,21 +1,31 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { registerLocaleData } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import localePt from '@angular/common/locales/pt';
 
 // COMPONENTS
 import { AppComponent } from './app.component';
 
 // MODULES
+import { ComponentsModule } from './components/components.module';
 import { AppRoutingModule } from './app.routing';
-import { SharedModule } from '@shared/shared.module';
-
-registerLocaleData(localePt, 'pt');
 
 @NgModule({
   bootstrap: [AppComponent],
-  declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, RouterModule, SharedModule]
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    ComponentsModule,
+    CommonModule,
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    RouterModule
+  ]
 })
-export class AppModule {}
+export class AppModule { }

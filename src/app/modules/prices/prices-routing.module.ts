@@ -3,12 +3,18 @@ import { Routes, RouterModule } from '@angular/router';
 
 // COMPONENTS
 import { DashboardComponent } from '@prices/pages';
+import { MainStructureComponent } from '@shared/components';
 
 const routes: Routes = [
   {
     path: '',
-    component: DashboardComponent,
-    children: []
+    component: MainStructureComponent,
+    children: [
+      {
+        path: '',
+        component: DashboardComponent
+      }
+    ]
   }
 ];
 

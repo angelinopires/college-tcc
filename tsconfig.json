@@ -22,6 +22,18 @@
       "@materials/*": [
         "src/app/modules/materials/*"
       ],
+      "@material-ui": [
+        "src/app/modules/material-ui"
+      ],
+      "@material-ui/*": [
+        "src/app/modules/material-ui/*"
+      ],
+      "@mocks": [
+        "src/app/mocks"
+      ],
+      "@mocks*": [
+        "src/app/mocks/*"
+      ],
       "@orders": [
         "src/app/modules/orders"
       ],
@@ -58,6 +70,12 @@
       "@shared/*": [
         "src/app/shared/*"
       ],
+      "@projectTypes": [
+        "src/app/types"
+      ],
+      "@projectTypes/*": [
+        "src/app/types/*"
+      ],
       "@users": [
         "src/app/modules/users"
       ],
@@ -67,7 +85,12 @@
     },
     "sourceMap": true,
     "target": "es5",
-    "typeRoots": ["node_modules/@types"],
-    "lib": ["es2018", "dom"]
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2018",
+      "dom"
+    ]
   }
 }

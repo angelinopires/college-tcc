@@ -1,10 +1,23 @@
 // Fonts
-$font-default: "Montserrat", sans-serif;
+$font-default: "Roboto", sans-serif;
 
 // Text Colors
-$text-color: #333333;
+$text-color: #333;
+$gray-text: #acacac;
+$white: #fff;
 
-// Size variables
+// Main colors
+$light-blue: #6dd3d6;
+$light-brown: #d6986d;
+$brown: #966a4c;
+$light-purple: #7d7bd6;
+$purple:#585696;
+
+// Design System
+$primary-color: $light-blue;
+$secondary-color: $light-purple;
+
+// Screen sizes
 $screen-mobile: 576px;
 $screen-tablet: 768px;
 $screen-tablet-landscape: 992px;
