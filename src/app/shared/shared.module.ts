@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { MaterialUiModule } from '../modules/material-ui/material-ui.module';
 
 // COMPONENTS
 import { HeaderComponent } from './components/header/header.component';
@@ -10,6 +9,12 @@ import { MainStructureComponent } from './components/main-structure/main-structu
 import { MenuComponent } from './components/menu/menu.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+
+// MODULES
+import { MaterialUiModule } from '@material-ui/material-ui.module';
+
+// SERVICES
+import { LoginService } from '@services';
 
 @NgModule({
   declarations: [
@@ -28,6 +33,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     NavbarComponent,
     SidebarComponent
   ],
-  imports: [CommonModule, RouterModule, MaterialUiModule]
+  imports: [CommonModule, RouterModule, MaterialUiModule],
+  providers: [LoginService]
 })
 export class SharedModule {}
