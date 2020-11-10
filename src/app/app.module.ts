@@ -9,7 +9,6 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 
 // MODULES
-import { ComponentsModule } from './components/components.module';
 import { AppRoutingModule } from './app.routing';
 
 @NgModule({
@@ -20,7 +19,6 @@ import { AppRoutingModule } from './app.routing';
   imports: [
     AppRoutingModule,
     BrowserAnimationsModule,
-    ComponentsModule,
     CommonModule,
     FormsModule,
     HttpClientModule,
