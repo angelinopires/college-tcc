@@ -10,6 +10,12 @@
     "moduleResolution": "node",
     "outDir": "./dist/out-tsc",
     "paths": {
+      "@authentication": [
+        "src/app/modules/authentication"
+      ],
+      "@authentication/*": [
+        "src/app/modules/authentication/*"
+      ],
       "@home": [
         "src/app/modules/home"
       ],

@@ -6,7 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: './modules/home/home.module#HomeModule'
+    loadChildren: './modules/authentication/authentication.module#AuthenticationModule'
   },
   {
     path: 'cotacoes',
