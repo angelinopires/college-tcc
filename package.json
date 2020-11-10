@@ -3,7 +3,7 @@
   "version": "1.2.0",
   "scripts": {
     "build": "ng build --prod",
-    "deploy": "ng deploy",
+    "deploy": "ngh --branch=gh-pages",
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start",
     "lint": "tsc --noEmit && eslint . --ext js,ts,json --quiet --fix",
     "start": "ng serve"
