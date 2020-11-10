@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from '@services';
 
 declare const $: any;
+
 declare interface RouteInfo {
     path: string;
     title: string;
     icon: string;
     class: string;
 }
+
 export const ROUTES: RouteInfo[] = [
   { path: '/materiais', title: 'Materiais',  icon:'list_alt', class: '' },
   { path: '/fornecedores', title: 'Fornecedores',  icon:'local_shipping', class: '' },
@@ -21,19 +24,21 @@ export const ROUTES: RouteInfo[] = [
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss']
 })
+
 export class SidebarComponent implements OnInit {
   menuItems: any[];
 
-  constructor() { }
+  constructor(private _loginService: LoginService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.menuItems = ROUTES.filter(menuItem => menuItem);
   }
 
-  isMobileMenu() {
-      if ($(window).width() > 991) {
-          return false;
-      }
-      return true;
-  };
+  isMobileMenu(): boolean {
+    return $(window).width() <= 992
+  }
+
+  logout (): void {
+    this._loginService.logout()
+  }
 }

@@ -1,15 +1,9 @@
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
-import {animate, state, style, transition, trigger} from '@angular/animations';
-import { requests } from '@mocks'
 import { MatTableDataSource } from '@angular/material/table';
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-  description: string;
-}
+// SERVICES
+import { RequestService } from '@services';
 
 @Component({
   selector: 'app-dashboard',
@@ -27,8 +21,9 @@ export class DashboardComponent implements OnInit {
   columnsToDisplay = ['id', 'requesterName', 'justification', 'requestDate', 'desiredDate', 'priority', 'status', 'actions'];
   isTableExpanded = false
 
+  constructor (private _requestService: RequestService) {}
 
-  ngOnInit () {
-    this.requestsList.data = requests
+  ngOnInit (): void {
+    this.requestsList.data = this._requestService.getRequests()
   }
 }
