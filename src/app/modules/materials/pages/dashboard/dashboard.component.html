@@ -1,1 +1,56 @@
-<p>Dashboard de materiais</p>
+<div class="main-content">
+    <div class="row">
+        <div class="col-12 col-md-3">
+            <mat-form-field appearance="outline">
+                <mat-label>Pesquisar</mat-label>
+                <input matInput placeholder="Nome ou descrição" (keyup)="applyFilter($event.target.value)">
+                <mat-icon matSuffix>search</mat-icon>
+                <mat-hint>Exemplo: Lingote de Aço</mat-hint>
+            </mat-form-field>
+        </div>
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header card-header-info">
+                    <h4 class="card-title">Materiais</h4>
+                </div>
+                <div class="card-body">
+                    <div class="mat-elevation-z8">
+                        <mat-table [dataSource]="dataSource" matSort matSortActive="id" matSortDirection="asc"
+                            matSortDisableClear>
+                            <ng-container matColumnDef="id">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header>#</mat-header-cell>
+                                <mat-cell *matCellDef="let element" data-label="#">
+                                    {{ element.id }}
+                                </mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="description">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header> Descrição </mat-header-cell>
+                                <mat-cell *matCellDef="let element" data-label="Descrição">
+                                    {{ element.description}}
+                                </mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="unity">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header> Unidade </mat-header-cell>
+                                <mat-cell *matCellDef="let element" data-label="Unidade">
+                                    {{ element.unity }}
+                                </mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="group">
+                                <mat-header-cell *matHeaderCellDef> Grupo </mat-header-cell>
+                                <mat-cell *matCellDef="let element" data-label="Grupo">
+                                    {{ element.groupId }}
+                                </mat-cell>
+                            </ng-container>
+
+                            <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+                            <mat-row *matRowDef="let element; columns: columnsToDisplay;"></mat-row>
+                        </mat-table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
