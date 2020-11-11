@@ -17,8 +17,9 @@
             "tsConfig": "src/tsconfig.app.json",
             "polyfills": "src/polyfills.ts",
             "assets": [
-              "src/assets",
-              "src/app/modules/authentication"
+              "src/assets/img",
+              "src/app/modules/authentication",
+              "src/favicon.ico"
             ],
             "styles": [
               "node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
