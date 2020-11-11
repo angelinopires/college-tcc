@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from '@services';
+import { LoginService } from '@services/login/login.service';
 
 declare const $: any;
 

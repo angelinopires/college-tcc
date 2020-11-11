@@ -1,12 +1,12 @@
-import { Material, Requester } from '@projectTypes/index'
+import { RequestMaterial, User } from '@projectTypes/index'
 
 export interface Request {
   desiredDate: string;
   id: number;
   justification: string;
-  materials: Material[];
+  materials: RequestMaterial[];
   priority: string; // TODO: deveria ser um ENUM
   requestDate: string;
-  requester: Requester;
-  status: number; // TODO: deveria ser um ENUM
+  requester: User;
+  status: string; // TODO: deveria ser um ENUM
 }

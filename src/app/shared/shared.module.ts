@@ -14,7 +14,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { MaterialUiModule } from '@material-ui/material-ui.module';
 
 // SERVICES
-import { LoginService } from '@services';
+import { LoginService } from '@services/login/login.service';
 
 @NgModule({
   declarations: [

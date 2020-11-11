@@ -1,46 +1,88 @@
-import { Request } from '@projectTypes/index'
-import { materials } from './materials'
+import { Material, Request, RequestMaterial, User } from '@projectTypes/index'
+import { materials } from '@mocks/materials'
+import { users } from '@mocks/users'
 
-const requests: Request[] = [
-  {
-    id: 1,
-    requestDate: '2019-10-10T16:37:58.979Z',
-    justification: 'Compras mensais do meu setor',
-    priority: 'Baixa',
-    status: 1,
-    materials: materials,
-    desiredDate: '2019-10-30T16:37:58.979Z',
-    requester: {
-      id: 1,
-      name: 'Amarildo'
-    }
-  },
-  {
-    id: 2,
-    requestDate: '2019-10-15T16:37:58.979Z',
-    justification: 'Preciso desse material para trabalhar.',
-    priority: 'Media',
-    status: 2,
-    materials: materials,
-    desiredDate: '2019-10-19T16:37:58.979Z',
-    requester: {
-      id: 2,
-      name: 'Clodoaldo'
-    }
-  },
-  {
-    id: 3,
-    requestDate: '2019-10-20T16:37:58.979Z',
-    justification: 'Estes materiais estao faltando na linha de producao!',
-    priority: 'Critica',
-    status: 3,
-    materials: materials,
-    desiredDate: '2019-10-20T16:37:58.979Z',
-    requester: {
-      id: 3,
-      name: 'Ana'
-    }
-  },
-]
+class Requests {
+  users: User[]
+  materials: Material[]
 
-export { requests }
+  constructor () {
+    this.users = users
+    this.materials = materials
+  }
+
+  public getRandomMaterials (startPosition: number, endPosition: number): RequestMaterial[] {
+    let requestMaterials: RequestMaterial[] = []
+
+    for (startPosition; startPosition < endPosition; startPosition++) {
+      const material = {
+        ...this.materials[startPosition],
+        amount: startPosition + endPosition
+      }
+      requestMaterials.push(material)
+    }
+
+    return requestMaterials
+  }
+
+  public getRequesterById (requesterId: number): User {
+    return this.users.find(user => user.id === requesterId)
+  }
+
+  public getRequests (): Request[] {
+    return [
+      {
+        desiredDate: "2019-10-18T16:37:58.979Z",
+        id: 1,
+        justification: "Preciso desse material para trabalhar.",
+        materials: this.getRandomMaterials(0, 5),
+        priority: "Alta",
+        requestDate: "2019-10-18T16:37:58.979Z",
+        requester: this.getRequesterById(1),
+        status: "Em análise"
+      },
+      {
+        desiredDate: "2019-10-19T16:37:58.979Z",
+        id: 2,
+        justification: "Preciso desse material para trabalhar.",
+        materials: this.getRandomMaterials(5, 10),
+        priority: "Baixa",
+        requestDate: "2019-10-18T16:37:58.979Z",
+        requester: this.getRequesterById(2),
+        status: "Em análise"
+      },
+      {
+        desiredDate: "2019-10-20T16:37:58.979Z",
+        id: 3,
+        justification: "Preciso desse material para trabalhar.",
+        materials: this.getRandomMaterials(10, 15),
+        priority: "Critica",
+        requestDate: "2019-10-18T16:37:58.979Z",
+        requester: this.getRequesterById(3),
+        status: "Concluido"
+      },
+      {
+        desiredDate: "2019-10-20T16:37:58.979Z",
+        id: 4,
+        justification: "Preciso desse material para trabalhar.",
+        materials: this.getRandomMaterials(15, 20),
+        priority: "Baixa",
+        requestDate: "2019-10-18T16:37:58.979Z",
+        requester: this.getRequesterById(4),
+        status: "Negado"
+      },
+      {
+        desiredDate: "2019-10-20T16:37:58.979Z",
+        id: 5,
+        justification: "Preciso desse material para trabalhar.",
+        materials: this.getRandomMaterials(20, 25),
+        priority: "Alta",
+        requestDate: "2019-10-18T16:37:58.979Z",
+        requester: this.getRequesterById(4),
+        status: "Concluido"
+      }
+    ]
+  }
+}
+
+export { Requests }
