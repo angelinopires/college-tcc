@@ -1,5 +1,5 @@
 import { Material, Request, RequestMaterial, User } from '@projectTypes/index'
-import { materials } from '@mocks/materials'
+import { Materials } from '@mocks/materials'
 import { users } from '@mocks/users'
 
 class Requests {
@@ -7,8 +7,10 @@ class Requests {
   materials: Material[]
 
   constructor () {
+    const materialsClass = new Materials()
+
     this.users = users
-    this.materials = materials
+    this.materials = materialsClass.getMaterials()
   }
 
   public getRandomMaterials (startPosition: number, endPosition: number): RequestMaterial[] {

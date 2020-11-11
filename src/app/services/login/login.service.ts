@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
-import { RequestService } from '@services/request/request.service';
 import { Router } from '@angular/router';
+
+// SERVICES
+import { MaterialService } from '@services/material/material.service';
+import { ProvidersService } from '@services/providers/providers.service';
+import { RequestService } from '@services/request/request.service';
 import { StorageService } from '@services/storage/storage.service';
 
 RequestService
@@ -10,6 +14,8 @@ RequestService
 
 export class LoginService {
   constructor(
+    private _materialService: MaterialService,
+    private _providerService: ProvidersService,
     private _requestService: RequestService,
     private _router: Router,
     private _storageService: StorageService
@@ -30,6 +36,8 @@ export class LoginService {
     }
 
     this._storageService.setItem('user', JSON.stringify(user))
+    this._materialService.initializeRequests()
+    this._providerService.initializeProviders()
     this._requestService.initializeRequests()
     this._redirect('/solicitacoes')
   }
