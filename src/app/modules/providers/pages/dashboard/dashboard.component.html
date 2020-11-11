@@ -1,1 +1,94 @@
-<p>dashboard de fornecedores!</p>
+<div class="main-content">
+    <div class="row justify-content-between">
+        <div class="col-12 col-md-3">
+            <mat-form-field appearance="outline">
+                <mat-label>Pesquisar</mat-label>
+                <input matInput placeholder="Nome" (keyup)="applyFilter($event.target.value)">
+                <mat-icon matSuffix>search</mat-icon>
+                <mat-hint>Exemplo: Ferro & Aço Ltda</mat-hint>
+            </mat-form-field>
+        </div>
+
+        <div class="col-12 col-md-3 mr-1 d-flex justify-content-end">
+            <button color="primary" rel="tooltip" mat-fab matTooltip="Adicionar fornecedor">
+                <i class="material-icons">add</i>
+            </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header card-header-info">
+                    <h4 class="card-title">Fornecedores</h4>
+                </div>
+                <div class="card-body">
+                    <div class="table table-responsive mat-elevation-z8">
+                        <mat-table [dataSource]="dataSource" matSort matSortActive="id" matSortDirection="asc"
+                            matSortDisableClear>
+                            <ng-container matColumnDef="id">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header>#</mat-header-cell>
+                                <mat-cell *matCellDef="let element" data-label="#">
+                                    {{ element.id }}
+                                </mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="name">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header> Nome </mat-header-cell>
+                                <mat-cell *matCellDef="let element" data-label="Nome">
+                                    {{ element.companyName }}
+                                </mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="city">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header> Cidade </mat-header-cell>
+                                <mat-cell *matCellDef="let element" data-label="Cidade">
+                                    {{ element.city }}
+                                </mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="salesman">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header> Vendedor </mat-header-cell>
+                                <mat-cell *matCellDef="let element" data-label="Vendedor">
+                                    {{ element.salesman }}
+                                </mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="phone">
+                                <mat-header-cell *matHeaderCellDef> Telefone </mat-header-cell>
+                                <mat-cell *matCellDef="let element" data-label="Telefone">
+                                    {{ element.phone }}
+                                </mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="mobile">
+                                <mat-header-cell *matHeaderCellDef> Celular </mat-header-cell>
+                                <mat-cell *matCellDef="let element" data-label="Celular">
+                                    {{ element.mobile }}
+                                </mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="actions">
+                                <mat-header-cell *matHeaderCellDef> Ações </mat-header-cell>
+                                <mat-cell class="td-actions text-center" *matCellDef="let element" data-label="Ações">
+                                    <div class="btn-group">
+                                        <button class="btn btn-warning" rel="tooltip" mat-raised-button
+                                            matTooltip="Editar" type="button">
+                                            <i class="material-icons">edit</i>
+                                        </button>
+                                        <button class="btn btn-danger" rel="tooltip" mat-raised-button
+                                            matTooltip="Excluir" type="button">
+                                            <i class="material-icons">close</i>
+                                        </button>
+                                    </div>
+                                </mat-cell>
+                            </ng-container>
+
+                            <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+                            <mat-row *matRowDef="let element; columns: columnsToDisplay;"></mat-row>
+                        </mat-table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -11,8 +11,8 @@ export const providers: Provider[] = [
     cep: "07252-140",
     city: "São Paulo",
     uf: "SP",
-    phone: "(11)3922-9583",
-    mobile: "(11)99760-6747",
+    phone: "(11) 3922-9583",
+    mobile: "(11) 99760-6747",
     salesman: "Camila da Silva Sauro",
     active: true
   },
@@ -26,8 +26,8 @@ export const providers: Provider[] = [
     cep: "11704-160",
     city: "São Paulo",
     uf: "SP",
-    phone: "(13)3589-4652",
-    mobile: "(11)99760-6747",
+    phone: "(13) 3589-4652",
+    mobile: "(11) 99760-6747",
     salesman: "Henry da Silva Sauro",
     active: true
   },
@@ -41,8 +41,8 @@ export const providers: Provider[] = [
     cep: "04842-110",
     city: "São Paulo",
     uf: "SP",
-    phone: "(13)3852-4059",
-    mobile: "(11)99123-4395",
+    phone: "(13) 3852-4059",
+    mobile: "(11) 99123-4395",
     salesman: "Fernando Henrique Amadeu",
     active: true
   },
@@ -56,8 +56,8 @@ export const providers: Provider[] = [
     cep: "04848-120",
     city: "São Paulo",
     uf: "SP",
-    phone: "(11)2231-4552",
-    mobile: "(11)94002-8922",
+    phone: "(11) 2231-4552",
+    mobile: "(11) 94002-8922",
     salesman: "Márcio de Oliveira",
     active: true
   },
@@ -71,8 +71,8 @@ export const providers: Provider[] = [
     cep: "03942-010",
     city: "São Paulo",
     uf: "SP",
-    phone: "(11)2636-9360",
-    mobile: "(11)99760-6747",
+    phone: "(11) 2636-9360",
+    mobile: "(11) 99760-6747",
     salesman: "Luis Abreu da Silva",
     active: false
   }

@@ -1,51 +1,5 @@
-@import "variables";
+@import "placeholders";
 
-@media screen and (max-width: $screen-tablet-landscape) {
-  .mat-table {
-    vertical-align: middle;
-    border: 0;
-
-    caption {
-      font-size: 1em;
-    }
-
-    .mat-header-row {
-      display: none;
-    }
-
-    .mat-row {
-      display: block;
-      border-bottom: 5px solid #ddd;
-    }
-
-    .mat-cell {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 30px;
-      margin-bottom: 4%;
-      padding: 0 1rem;
-      overflow-y: auto;
-      font-size: 1em;
-      text-align: right;
-      border-bottom: 1px solid #ddd;
-
-      &::before {
-        float: left;
-        margin-right: 1rem;
-        font-weight: 700;
-        font-size: 0.85em;
-        text-transform: uppercase;
-        content: attr(data-label);
-      }
-
-      &:first-child {
-        margin-top: 4%;
-      }
-
-      &:last-child {
-        border-bottom: 0;
-      }
-    }
-  }
+.main-content {
+  @extend %dashboard;
 }

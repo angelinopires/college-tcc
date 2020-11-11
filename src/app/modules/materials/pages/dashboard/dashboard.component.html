@@ -14,7 +14,7 @@
                     <h4 class="card-title">Materiais</h4>
                 </div>
                 <div class="card-body">
-                    <div class="mat-elevation-z8">
+                    <div class="table table-responsive mat-elevation-z8">
                         <mat-table [dataSource]="dataSource" matSort matSortActive="id" matSortDirection="asc"
                             matSortDisableClear>
                             <ng-container matColumnDef="id">
@@ -39,9 +39,9 @@
                             </ng-container>
 
                             <ng-container matColumnDef="group">
-                                <mat-header-cell *matHeaderCellDef> Grupo </mat-header-cell>
+                                <mat-header-cell *matHeaderCellDef mat-sort-header> Grupo </mat-header-cell>
                                 <mat-cell *matCellDef="let element" data-label="Grupo">
-                                    {{ element.groupId }}
+                                    {{ element.group.description }}
                                 </mat-cell>
                             </ng-container>
 

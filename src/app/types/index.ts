@@ -1,3 +1,4 @@
+export * from './groups'
 export * from './material'
 export * from './providers'
 export * from './request'

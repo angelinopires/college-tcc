@@ -22,8 +22,6 @@ export class MainStructureComponent {
       const isWindows = navigator.platform.indexOf('Win') > -1 ? true : false;
 
       if (isWindows && !document.getElementsByTagName('body')[0].classList.contains('sidebar-mini')) {
-          // if we are on windows OS we activate the perfectScrollbar function
-
           document.getElementsByTagName('body')[0].classList.add('perfect-scrollbar-on');
       } else {
           document.getElementsByTagName('body')[0].classList.remove('perfect-scrollbar-off');
@@ -50,7 +48,7 @@ export class MainStructureComponent {
            elemMainPanel.scrollTop = 0;
            elemSidebar.scrollTop = 0;
       });
-      if (window.matchMedia(`(min-width: 960px)`).matches && !this.isMac()) {
+      if (window.matchMedia(`(min-width: 992px)`).matches && !this.isMac()) {
           let ps = new PerfectScrollbar(elemMainPanel);
           ps = new PerfectScrollbar(elemSidebar);
       }
@@ -59,7 +57,6 @@ export class MainStructureComponent {
       let $sidebar = $('.sidebar');
       let $sidebar_responsive = $('body > .navbar-collapse');
       let $sidebar_img_container = $sidebar.find('.sidebar-background');
-
 
       if(window_width > 767){
           if($('.fixed-plugin .dropdown').hasClass('show-dropdown')){
@@ -83,7 +80,6 @@ export class MainStructureComponent {
       $('.fixed-plugin .badge').click(function(){
           let $full_page_background = $('.full-page-background');
 
-
           $(this).siblings().removeClass('active');
           $(this).addClass('active');
 
@@ -103,7 +99,6 @@ export class MainStructureComponent {
 
           $(this).parent('li').siblings().removeClass('active');
           $(this).parent('li').addClass('active');
-
 
           var new_image = $(this).find("img").attr('src');
 
@@ -127,9 +122,11 @@ export class MainStructureComponent {
           }
       });
   }
+
   ngAfterViewInit() {
       this.runOnRouteChange();
   }
+
   isMaps(path){
       var titlee = this.location.prepareExternalUrl(this.location.path());
       titlee = titlee.slice( 1 );
@@ -140,13 +137,15 @@ export class MainStructureComponent {
           return true;
       }
   }
+
   runOnRouteChange(): void {
-    if (window.matchMedia(`(min-width: 960px)`).matches && !this.isMac()) {
+    if (window.matchMedia(`(min-width: 992px)`).matches && !this.isMac()) {
       const elemMainPanel = <HTMLElement>document.querySelector('.main-panel');
       const ps = new PerfectScrollbar(elemMainPanel);
       ps.update();
     }
   }
+
   isMac(): boolean {
       let bool = false;
       if (navigator.platform.toUpperCase().indexOf('MAC') >= 0 || navigator.platform.toUpperCase().indexOf('IPAD') >= 0) {

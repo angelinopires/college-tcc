@@ -1,9 +1,11 @@
+import { Group } from './groups'
+
 export interface Material {
   active: boolean;
   attendanceDate: string;
   createdAt: string;
   description: string;
-  groupId: number; // TODO: deveria ser um ENUM
+  group: Group;
   id: number;
   unity: string;
   height?: number;

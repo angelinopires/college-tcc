@@ -3,10 +3,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 // COMPONENTS
-import { HeaderComponent } from './components/header/header.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { MainStructureComponent } from './components/main-structure/main-structure.component';
-import { MenuComponent } from './components/menu/menu.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 
@@ -18,18 +16,14 @@ import { LoginService } from '@services/login/login.service';
 
 @NgModule({
   declarations: [
-    HeaderComponent,
     LoadingComponent,
     MainStructureComponent,
-    MenuComponent,
     NavbarComponent,
     SidebarComponent
   ],
   exports: [
-    HeaderComponent,
     LoadingComponent,
     MainStructureComponent,
-    MenuComponent,
     NavbarComponent,
     SidebarComponent
   ],
