@@ -11,7 +11,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialUiModule } from '@material-ui/material-ui.module';
 
 // SERVICE
-import { LoginService, StorageService } from '@services';
+import { LoginService } from '@services/login/login.service';
+import { StorageService } from '@services/storage/storage.service';
 
 @NgModule({
   declarations: [LoginComponent],
