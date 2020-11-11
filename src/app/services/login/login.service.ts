@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
+import { RequestService } from '@services/request/request.service';
 import { Router } from '@angular/router';
-import { RequestService, StorageService } from '@services';
+import { StorageService } from '@services/storage/storage.service';
 
 RequestService
 @Injectable({

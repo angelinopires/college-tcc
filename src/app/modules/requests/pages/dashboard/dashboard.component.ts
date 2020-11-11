@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 
 // SERVICES
-import { RequestService } from '@services';
+import { RequestService } from '@services/request/request.service';
 
 @Component({
   selector: 'app-dashboard',

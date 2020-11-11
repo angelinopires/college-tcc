@@ -10,7 +10,7 @@ import { ProvidersRoutingModule } from './providers-routing.module';
 import { SharedModule } from '@shared/shared.module';
 
 // SERVICES
-import { ApiService } from '@services';
+import { ApiService } from '@services/api/api.service';
 
 @NgModule({
   declarations: [DashboardComponent],
