@@ -2,7 +2,7 @@
     <mat-card class="login__card">
         <mat-card-content class="login__formWrapper">
             <div class="login__companyName">
-                <img src="/assets/img/logo.png" alt="Steel Corporation">
+                <img src="./assets/img/logo.png" alt="Steel Corporation">
                 <h1>Steel Corporation</h1>
             </div>
 
@@ -12,7 +12,7 @@
                 </mat-form-field>
 
                 <mat-form-field class="login__input">
-                    <input type="password" matInput placeholder="Senha" required formControlName="password">
+                    <input type="password" matInput placeholder="Senha" required formControlName="password" autocomplete="current-password">
                 </mat-form-field>
 
                 <a class="login__forgotPassword" mat-button href="#">Esqueceu a senha?</a>

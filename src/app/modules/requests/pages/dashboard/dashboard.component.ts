@@ -19,7 +19,6 @@ import { RequestService } from '@services/request/request.service';
 export class DashboardComponent implements OnInit {
   requestsList = new MatTableDataSource();
   columnsToDisplay = ['id', 'requesterName', 'justification', 'requestDate', 'desiredDate', 'priority', 'status', 'actions'];
-  isTableExpanded = false
 
   constructor (private _requestService: RequestService) {}
 
