@@ -6,6 +6,7 @@ import { MaterialService } from '@services/material/material.service';
 import { ProvidersService } from '@services/providers/providers.service';
 import { RequestService } from '@services/request/request.service';
 import { StorageService } from '@services/storage/storage.service';
+import { UserService } from '@services/user/user.service';
 
 RequestService
 @Injectable({
@@ -18,7 +19,8 @@ export class LoginService {
     private _providerService: ProvidersService,
     private _requestService: RequestService,
     private _router: Router,
-    private _storageService: StorageService
+    private _storageService: StorageService,
+    private _userService: UserService
   ) { }
 
   private _redirect (path: string): void {
@@ -39,6 +41,7 @@ export class LoginService {
     this._materialService.initializeRequests()
     this._providerService.initializeProviders()
     this._requestService.initializeRequests()
+    this._userService.initializeUsers()
     this._redirect('/solicitacoes')
   }
 

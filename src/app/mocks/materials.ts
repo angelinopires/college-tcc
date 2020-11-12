@@ -1,19 +1,12 @@
-import { Group, Material } from '@projectTypes/index'
-import { groups } from './groups'
+import { Groups } from './groups'
+import { Material } from '@projectTypes/index'
 
 export class Materials {
-  groups: Group[];
+  materials: Material[] = []
+  groups = new Groups()
 
   constructor () {
-    this.groups = groups
-  }
-
-  public getGroupNameById (id: number): Group {
-    return this.groups.find(group => group.id === id)
-  }
-
-  public getMaterials (): Material[] {
-    return [
+    this.materials = [
       {
         id: 1,
         description: "Lingote de Aço 100mmx300mmx40mm",
@@ -21,7 +14,7 @@ export class Materials {
         createdAt: "2019-10-19T16:37:58.979Z",
         attendanceDate: "2019-10-19T17:37:58.979Z",
         active: true,
-        group: this.getGroupNameById(1)
+        group: this.groups.getGroupById(1)
       },
       {
         id: 2,
@@ -30,7 +23,7 @@ export class Materials {
         createdAt: "2019-10-19T16:37:58.979Z",
         attendanceDate: "2019-10-19T17:37:58.979Z",
         active: true,
-        group: this.getGroupNameById(1)
+        group: this.groups.getGroupById(1)
       },
       {
         id: 3,
@@ -39,7 +32,7 @@ export class Materials {
         createdAt: "2019-10-19T16:37:58.979Z",
         attendanceDate: "2019-10-19T17:37:58.979Z",
         active: true,
-        group: this.getGroupNameById(1)
+        group: this.groups.getGroupById(1)
       },
       {
         id: 4,
@@ -48,7 +41,7 @@ export class Materials {
         createdAt: "2019-10-19T16:37:58.979Z",
         attendanceDate: "2019-10-19T17:37:58.979Z",
         active: true,
-        group: this.getGroupNameById(1)
+        group: this.groups.getGroupById(1)
       },
       {
         id: 5,
@@ -57,7 +50,7 @@ export class Materials {
         createdAt: "2019-10-19T16:37:58.979Z",
         attendanceDate: "2019-10-19T17:37:58.979Z",
         active: true,
-        group: this.getGroupNameById(1)
+        group: this.groups.getGroupById(1)
       },
       {
         id: 6,
@@ -66,7 +59,7 @@ export class Materials {
         createdAt: "2019-10-19T16:37:58.979Z",
         attendanceDate: "2019-10-19T17:37:58.979Z",
         active: true,
-        group: this.getGroupNameById(2)
+        group: this.groups.getGroupById(2)
       },
       {
         id: 7,
@@ -75,7 +68,7 @@ export class Materials {
         createdAt: "2019-10-19T16:37:58.979Z",
         attendanceDate: "2019-10-19T17:37:58.979Z",
         active: true,
-        group: this.getGroupNameById(2)
+        group: this.groups.getGroupById(2)
       },
       {
         id: 8,
@@ -84,7 +77,7 @@ export class Materials {
         createdAt: "2019-10-19T16:37:58.979Z",
         attendanceDate: "2019-10-19T17:37:58.979Z",
         active: true,
-        group: this.getGroupNameById(2)
+        group: this.groups.getGroupById(2)
       },
       {
         id: 9,
@@ -93,7 +86,7 @@ export class Materials {
         createdAt: "2019-10-19T16:37:58.979Z",
         attendanceDate: "2019-10-19T17:37:58.979Z",
         active: true,
-        group: this.getGroupNameById(2)
+        group: this.groups.getGroupById(2)
       },
       {
         id: 10,
@@ -102,7 +95,7 @@ export class Materials {
         createdAt: "2019-10-19T16:37:58.979Z",
         attendanceDate: "2019-10-19T17:37:58.979Z",
         active: true,
-        group: this.getGroupNameById(2)
+        group: this.groups.getGroupById(2)
       },
       {
         id: 11,
@@ -111,7 +104,7 @@ export class Materials {
         createdAt: "2019-10-19T16:37:58.979Z",
         attendanceDate: "2019-10-19T17:37:58.979Z",
         active: true,
-        group: this.getGroupNameById(3)
+        group: this.groups.getGroupById(3)
       },
       {
         id: 12,
@@ -120,7 +113,7 @@ export class Materials {
         createdAt: "2019-10-19T16:37:58.979Z",
         attendanceDate: "2019-10-19T17:37:58.979Z",
         active: true,
-        group: this.getGroupNameById(3)
+        group: this.groups.getGroupById(3)
       },
       {
         id: 13,
@@ -129,7 +122,7 @@ export class Materials {
         createdAt: "2019-10-19T16:37:58.979Z",
         attendanceDate: "2019-10-19T17:37:58.979Z",
         active: true,
-        group: this.getGroupNameById(3)
+        group: this.groups.getGroupById(3)
       },
       {
         id: 14,
@@ -138,7 +131,7 @@ export class Materials {
         createdAt: "2019-10-19T16:37:58.979Z",
         attendanceDate: "2019-10-19T17:37:58.979Z",
         active: true,
-        group: this.getGroupNameById(3)
+        group: this.groups.getGroupById(3)
       },
       {
         id: 15,
@@ -147,7 +140,7 @@ export class Materials {
         createdAt: "2019-10-19T16:37:58.979Z",
         attendanceDate: "2019-10-19T17:37:58.979Z",
         active: true,
-        group: this.getGroupNameById(3)
+        group: this.groups.getGroupById(3)
       },
       {
         id: 16,
@@ -156,7 +149,7 @@ export class Materials {
         createdAt: "2019-10-19T16:37:58.979Z",
         attendanceDate: "2019-10-19T17:37:58.979Z",
         active: true,
-        group: this.getGroupNameById(4)
+        group: this.groups.getGroupById(4)
       },
       {
         id: 17,
@@ -165,7 +158,7 @@ export class Materials {
         createdAt: "2019-10-19T16:37:58.979Z",
         attendanceDate: "2019-10-19T17:37:58.979Z",
         active: true,
-        group: this.getGroupNameById(4)
+        group: this.groups.getGroupById(4)
       },
       {
         id: 18,
@@ -174,7 +167,7 @@ export class Materials {
         createdAt: "2019-10-19T16:37:58.979Z",
         attendanceDate: "2019-10-19T17:37:58.979Z",
         active: true,
-        group: this.getGroupNameById(4)
+        group: this.groups.getGroupById(4)
       },
       {
         id: 19,
@@ -183,7 +176,7 @@ export class Materials {
         createdAt: "2019-10-19T16:37:58.979Z",
         attendanceDate: "2019-10-19T17:37:58.979Z",
         active: true,
-        group: this.getGroupNameById(4)
+        group: this.groups.getGroupById(4)
       },
       {
         id: 20,
@@ -192,7 +185,7 @@ export class Materials {
         createdAt: "2019-10-19T16:37:58.979Z",
         attendanceDate: "2019-10-19T17:37:58.979Z",
         active: true,
-        group: this.getGroupNameById(4)
+        group: this.groups.getGroupById(4)
       },
       {
         id: 21,
@@ -201,7 +194,7 @@ export class Materials {
         createdAt: "2019-10-19T16:37:58.979Z",
         attendanceDate: "2019-10-19T17:37:58.979Z",
         active: true,
-        group: this.getGroupNameById(5)
+        group: this.groups.getGroupById(5)
       },
       {
         id: 22,
@@ -210,7 +203,7 @@ export class Materials {
         createdAt: "2019-10-19T16:37:58.979Z",
         attendanceDate: "2019-10-19T17:37:58.979Z",
         active: true,
-        group: this.getGroupNameById(5)
+        group: this.groups.getGroupById(5)
       },
       {
         id: 23,
@@ -219,7 +212,7 @@ export class Materials {
         createdAt: "2019-10-19T16:37:58.979Z",
         attendanceDate: "2019-10-19T17:37:58.979Z",
         active: true,
-        group: this.getGroupNameById(5)
+        group: this.groups.getGroupById(5)
       },
       {
         id: 24,
@@ -228,7 +221,7 @@ export class Materials {
         createdAt: "2019-10-19T16:37:58.979Z",
         attendanceDate: "2019-10-19T17:37:58.979Z",
         active: true,
-        group: this.getGroupNameById(5)
+        group: this.groups.getGroupById(5)
       },
       {
         id: 25,
@@ -237,8 +230,16 @@ export class Materials {
         createdAt: "2019-10-19T16:37:58.979Z",
         attendanceDate: "2019-10-19T17:37:58.979Z",
         active: true,
-        group: this.getGroupNameById(5)
+        group: this.groups.getGroupById(5)
       }
     ]
+  }
+
+  public getMaterialById (id: number): Material {
+    return this.materials.find(material => material.id === id)
+  }
+
+  public getAllMaterials (): Material[] {
+    return this.materials
   }
 }

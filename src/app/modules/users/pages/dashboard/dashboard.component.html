@@ -1,1 +1,93 @@
-<p>Dashboard de usuarios!</p>
+<div class="main-content">
+  <div class="row justify-content-between">
+    <div class="col-12 col-md-3">
+      <mat-form-field appearance="outline">
+        <mat-label>Pesquisar</mat-label>
+        <input matInput placeholder="Nome" (keyup)="applyFilter($event.target.value)">
+        <mat-icon matSuffix>search</mat-icon>
+        <mat-hint>Exemplo: Ferro & Aço Ltda</mat-hint>
+      </mat-form-field>
+    </div>
+
+    <div class="col-12 col-md-3 mr-1 d-flex justify-content-end">
+      <button color="primary" rel="tooltip" mat-fab matTooltip="Adicionar fornecedor">
+        <i class="material-icons">add</i>
+      </button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header card-header-info">
+          <h4 class="card-title">Usuarios</h4>
+        </div>
+        <div class="card-body">
+          <div class="table table-responsive mat-elevation-z8">
+            <mat-table [dataSource]="dataSource" matSort matSortActive="id" matSortDirection="asc" matSortDisableClear>
+              <ng-container matColumnDef="id">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>#</mat-header-cell>
+                <mat-cell *matCellDef="let element" data-label="#">
+                  {{ element.id }}
+                </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="name">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Nome</mat-header-cell>
+                <mat-cell *matCellDef="let element" data-label="Nome">
+                  {{ element.name }}
+                </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="email">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Email</mat-header-cell>
+                <mat-cell *matCellDef="let element" data-label="Email">
+                  {{ element.email }}
+                </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="department">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Setor</mat-header-cell>
+                <mat-cell *matCellDef="let element" data-label="Setor">
+                  {{ element.department.description }}
+                </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="permission">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Permissão</mat-header-cell>
+                <mat-cell *matCellDef="let element" data-label="Permissão">
+                  {{ element.permission.description }}
+                </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="active">
+                <mat-header-cell *matHeaderCellDef>Ativo</mat-header-cell>
+                <mat-cell *matCellDef="let element" data-label="Ativo">
+                  <span class="badge" [class.badge-success]="element.active" [class.badge-danger]="!element.active">
+                    {{ element.active ? 'Sim' : 'Não' }}
+                  </span>
+                </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="actions">
+                <mat-header-cell *matHeaderCellDef>Ações</mat-header-cell>
+                <mat-cell class="td-actions text-center" *matCellDef="let element" data-label="Ações">
+                  <div class="btn-group">
+                    <button class="btn btn-warning" rel="tooltip" mat-raised-button matTooltip="Editar" type="button">
+                      <i class="material-icons">edit</i>
+                    </button>
+                    <button class="btn btn-danger" rel="tooltip" mat-raised-button matTooltip="Excluir" type="button">
+                      <i class="material-icons">close</i>
+                    </button>
+                  </div>
+                </mat-cell>
+              </ng-container>
+
+              <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+              <mat-row *matRowDef="let element; columns: columnsToDisplay;"></mat-row>
+            </mat-table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
