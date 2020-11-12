@@ -7,12 +7,15 @@
             </div>
 
             <form class="login__form" [formGroup]="loginForm" (submit)="onLoginSubmit()">
-                <mat-form-field class="login__input">
-                    <input type="email" matInput placeholder="Email" required formControlName="email">
+                <mat-form-field class="login__input" appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input matInput type="email" placeholder="Email" required formControlName="email" />
                 </mat-form-field>
 
-                <mat-form-field class="login__input">
-                    <input type="password" matInput placeholder="Senha" required formControlName="password" autocomplete="current-password">
+                <mat-form-field class="login__input" appearance="outline">
+                    <mat-label>Senha</mat-label>
+                    <input matInput type="password" placeholder="Senha" required formControlName="password"
+                        autocomplete="current-password" />
                 </mat-form-field>
 
                 <a class="login__forgotPassword" mat-button href="#">Esqueceu a senha?</a>
@@ -23,3 +26,10 @@
         </mat-card-content>
     </mat-card>
 </div>
+
+<mat-form-field appearance="outline">
+    <mat-label>Pesquisar</mat-label>
+    <input matInput placeholder="Prioridade, Situação" (keyup)="applyFilter($event.target.value)">
+    <mat-icon matSuffix>search</mat-icon>
+    <mat-hint>Exemplo: Alta, Em análise</mat-hint>
+</mat-form-field>

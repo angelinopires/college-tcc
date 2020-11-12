@@ -76,8 +76,14 @@
       "@shared/*": [
         "src/app/shared/*"
       ],
-      "@projectTypes": [
+      "@pipes": [
         "src/app/types"
+      ],
+      "@pipes/*": [
+        "src/app/pipes/*"
+      ],
+      "@projectTypes": [
+        "src/app/pipes"
       ],
       "@projectTypes/*": [
         "src/app/types/*"
