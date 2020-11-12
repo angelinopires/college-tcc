@@ -1,9 +1,14 @@
+import { Department } from './department'
+import { Permission } from './permission'
+
 export interface User {
-  active: boolean,
-  departmentId: number, // TODO: SHOULD BE ENUM
-  email: string,
-  id: number,
-  name: string,
-  password: string,
-  permissionId: number // TODO: SHOULD BE ENUM
+  active: boolean;
+  department: Department;
+  email: string;
+  id: number;
+  name: string;
+  password: string;
+  permission: Permission;
 }
+
+export type UserManager = Omit<User, 'department' | 'password'>

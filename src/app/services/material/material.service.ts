@@ -11,7 +11,7 @@ export class MaterialService {
 
   public initializeRequests (): void {
     const materials = new Materials()
-    this._storageService.setItem('materials', JSON.stringify(materials.getMaterials()))
+    this._storageService.setItem('materials', JSON.stringify(materials.getAllMaterials()))
   }
 
   public getMaterials (): Material[] {

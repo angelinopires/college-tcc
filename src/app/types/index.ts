@@ -1,5 +1,7 @@
+export * from './department'
 export * from './groups'
 export * from './material'
+export * from './permission'
 export * from './providers'
 export * from './request'
 export * from './user'

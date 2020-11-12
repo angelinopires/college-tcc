@@ -10,7 +10,7 @@ export class RequestService {
 
   public initializeRequests (): void {
     const requests = new Requests()
-    this._storageService.setItem('requests', JSON.stringify(requests.getRequests()))
+    this._storageService.setItem('requests', JSON.stringify(requests.getAllRequests()))
   }
 
   public getRequests (): Request[] {

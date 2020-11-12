@@ -6,15 +6,16 @@ import { RouterModule } from '@angular/router';
 import { DashboardComponent } from '@users/pages';
 
 // MODULES
-import { UsersRoutingModule } from './users-routing.module';
+import { MaterialUiModule } from '@material-ui/material-ui.module';
 import { SharedModule } from '@shared/shared.module';
+import { UsersRoutingModule } from './users-routing.module';
 
 // PROVIDERS
 import { ApiService } from '@services/api/api.service';
 
 @NgModule({
   declarations: [DashboardComponent],
-  imports: [CommonModule, UsersRoutingModule, RouterModule, SharedModule],
+  imports: [CommonModule, MaterialUiModule, RouterModule, SharedModule, UsersRoutingModule],
   providers: [ApiService]
 })
 export class UsersModule {}
