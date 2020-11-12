@@ -1,9 +1,11 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
 
 // SERVICES
 import { RequestService } from '@services/request/request.service';
+import { Request } from '@projectTypes/index';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,13 +18,25 @@ import { RequestService } from '@services/request/request.service';
   ])]
 })
 
-export class DashboardComponent implements OnInit {
-  requestsList = new MatTableDataSource();
-  columnsToDisplay = ['id', 'requesterName', 'justification', 'requestDate', 'desiredDate', 'priority', 'status', 'actions'];
+export class DashboardComponent implements OnInit, AfterViewInit {
+  dataSource = new MatTableDataSource();
+  columnsToDisplay = ['id', 'requester', 'justification', 'requestDate', 'desiredDate', 'priority', 'status', 'actions'];
+
+  expandedElement: Request | null;
+
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor (private _requestService: RequestService) {}
 
   ngOnInit (): void {
-    this.requestsList.data = this._requestService.getRequests()
+    this.dataSource.data = this._requestService.getRequests()
+  }
+
+  ngAfterViewInit (): void {
+    this.dataSource.sort = this.sort
+  }
+
+  applyFilter (filterValue: string): void {
+    this.dataSource.filter = filterValue.trim().toLocaleLowerCase()
   }
 }

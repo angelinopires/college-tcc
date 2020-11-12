@@ -58,10 +58,10 @@ class Requests {
         id: 3,
         justification: "Preciso desse material para trabalhar.",
         materials: this.getRandomMaterials(10, 15),
-        priority: "Critica",
+        priority: "Crítica",
         requestDate: "2019-10-18T16:37:58.979Z",
         requester: this.getRequesterById(3),
-        status: "Concluido"
+        status: "Concluído"
       },
       {
         desiredDate: "2019-10-20T16:37:58.979Z",
@@ -81,7 +81,7 @@ class Requests {
         priority: "Alta",
         requestDate: "2019-10-18T16:37:58.979Z",
         requester: this.getRequesterById(4),
-        status: "Concluido"
+        status: "Concluído"
       }
     ]
   }

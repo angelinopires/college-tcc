@@ -10,11 +10,15 @@ import { MaterialUiModule } from '@material-ui/material-ui.module';
 import { RequestsRoutingModule } from './requests-routing.module';
 import { SharedModule } from '@shared/shared.module';
 
+// PIPES
+import { DateFormatPipe } from '@pipes/date-format.pipe';
+
 // SERVICES
 import { ApiService } from '@services/api/api.service';
 
+
 @NgModule({
-  declarations: [DashboardComponent],
+  declarations: [DashboardComponent, DateFormatPipe],
   imports: [
     CommonModule,
     MaterialUiModule,
