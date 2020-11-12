@@ -1,5 +1,5 @@
 import { Groups } from './groups'
-import { Material } from '@projectTypes/index'
+import { Material, RequestMaterial} from '@projectTypes/index'
 
 export class Materials {
   materials: Material[] = []
@@ -241,5 +241,20 @@ export class Materials {
 
   public getAllMaterials (): Material[] {
     return this.materials
+  }
+
+  public getRandomMaterials (startPosition: number, endPosition: number): RequestMaterial[] {
+    let requestMaterials: RequestMaterial[] = []
+    const materials = this.getAllMaterials()
+
+    for (startPosition; startPosition < endPosition; startPosition++) {
+      const material = {
+        ...materials[startPosition],
+        amount: startPosition + endPosition
+      }
+      requestMaterials.push(material)
+    }
+
+    return requestMaterials
   }
 }
