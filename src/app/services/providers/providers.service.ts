@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { StorageService } from '@services/storage/storage.service';
 import { Providers } from '@mocks/providers'
-import { Provider } from '@projectTypes/providers'
+import { Provider } from '@projectTypes/provider'
 
 @Injectable({
   providedIn: 'root'

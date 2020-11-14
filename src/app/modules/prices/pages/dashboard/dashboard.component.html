@@ -58,10 +58,10 @@
               <ng-container matColumnDef="status">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>Situação</mat-header-cell>
                 <mat-cell *matCellDef="let element" data-label="Situação">
-                  <span class="badge" [class.badge-danger]="element.status === 'Negado'"
-                    [class.badge-warning]="element.status === 'Em andamento'"
-                    [class.badge-success]="element.status === 'Concluído'">
-                    {{ element.status }}
+                  <span class="badge" [class.badge-warning]="priceStatusEnum[element.status] === 'Em cotação'"
+                    [class.badge-danger]="priceStatusEnum[element.status] === 'Cancelado'"
+                    [class.badge-success]="priceStatusEnum[element.status] === 'Concluído'">
+                    {{ priceStatusEnum[element.status] }}
                   </span>
                 </mat-cell>
               </ng-container>

@@ -7,6 +7,9 @@ import { MatSort } from '@angular/material/sort';
 import { RequestService } from '@services/request/request.service';
 import { Request } from '@projectTypes/index';
 
+// TYPES
+import { RequestStatus, RequestPriority } from '@enums'
+
 @Component({
   selector: 'app-dashboard',
   styleUrls: ['./dashboard.component.scss'],
@@ -21,8 +24,9 @@ import { Request } from '@projectTypes/index';
 export class DashboardComponent implements OnInit, AfterViewInit {
   dataSource = new MatTableDataSource();
   columnsToDisplay = ['id', 'requester', 'justification', 'requestDate', 'desiredDate', 'priority', 'status', 'actions'];
-
   expandedElement: Request | null;
+  requestStatusEnums = RequestStatus
+  requestPriorityEnums = RequestPriority
 
   @ViewChild(MatSort) sort: MatSort;
 
