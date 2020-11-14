@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { StorageService } from '@services/storage/storage.service';
-import { providers } from '@mocks/providers'
+import { Providers } from '@mocks/providers'
 import { Provider } from '@projectTypes/providers'
 
 @Injectable({
@@ -10,7 +10,8 @@ export class ProvidersService {
   constructor(private _storageService: StorageService) { }
 
   public initializeProviders(): void {
-    this._storageService.setItem('providers', JSON.stringify(providers))
+    const providers = new Providers()
+    this._storageService.setItem('providers', JSON.stringify(providers.getAllProviders()))
   }
 
   public getProviders (): Provider[] {
