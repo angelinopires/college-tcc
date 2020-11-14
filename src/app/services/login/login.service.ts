@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 // SERVICES
 import { MaterialService } from '@services/material/material.service';
+import { OrderService } from '@services/order/order.service';
 import { PriceService } from '@services/price/price.service';
 import { ProvidersService } from '@services/providers/providers.service';
 import { RequestService } from '@services/request/request.service';
@@ -17,6 +18,7 @@ RequestService
 export class LoginService {
   constructor(
     private _materialService: MaterialService,
+    private _orderService: OrderService,
     private _priceService: PriceService,
     private _providerService: ProvidersService,
     private _requestService: RequestService,
@@ -41,6 +43,7 @@ export class LoginService {
 
     this._storageService.setItem('user', JSON.stringify(user))
     this._materialService.initializeRequests()
+    this._orderService.initializeOrders()
     this._priceService.initializePrices()
     this._providerService.initializeProviders()
     this._requestService.initializeRequests()

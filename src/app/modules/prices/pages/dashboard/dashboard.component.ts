@@ -8,6 +8,7 @@ import { PriceService } from '@services/price/price.service'
 
 // TYPES
 import { PriceMaterial } from '@projectTypes/index'
+import { PriceStatus } from '@enums'
 
 @Component({
   selector: 'app-dashboard',
@@ -22,7 +23,7 @@ import { PriceMaterial } from '@projectTypes/index'
 export class DashboardComponent implements OnInit, AfterViewInit {
   dataSource = new MatTableDataSource();
   columnsToDisplay = ['id', 'description', 'requestDate', 'deadline', 'status', 'responseDate', 'suggestedDate', 'actions'];
-
+  priceStatusEnum = PriceStatus
   expandedElement: Request | null;
 
   @ViewChild(MatSort) sort: MatSort;

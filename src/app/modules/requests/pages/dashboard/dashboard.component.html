@@ -64,20 +64,21 @@
                             <ng-container matColumnDef="priority">
                                 <mat-header-cell *matHeaderCellDef mat-sort-header>Prioridadade</mat-header-cell>
                                 <mat-cell *matCellDef="let element" data-label="Prioridade">
-                                    <span class="badge" [class.badge-danger]="element.priority === 'Crítica'"
-                                        [class.badge-warning]="element.priority === 'Alta'" [class.badge-success]="element.priority === 'Baixa'">
-                                        {{ element.priority }}
-
-                                    </span>
+                                    <span class="badge" [class.badge-success]="requestPriorityEnums[element.priority] === 'Baixa'"
+                                        [class.badge-warning]="requestPriorityEnums[element.priority] === 'Alta'"
+                                        [class.badge-danger]="requestPriorityEnums[element.priority] === 'Crítica'">
+                                        {{ requestPriorityEnums[element.priority] }}
+                                </span>
                                 </mat-cell>
                             </ng-container>
 
                             <ng-container matColumnDef="status">
                                 <mat-header-cell *matHeaderCellDef mat-sort-header>Situação</mat-header-cell>
                                 <mat-cell *matCellDef="let element" data-label="Situação">
-                                    <span class="badge" [class.badge-danger]="element.status === 'Negado'"
-                                        [class.badge-warning]="element.status === 'Em análise'" [class.badge-success]="element.status === 'Concluído'">
-                                        {{ element.status }}
+                                    <span class="badge" [class.badge-warning]="requestStatusEnums[element.status] === 'Em análise'"
+                                        [class.badge-danger]="requestStatusEnums[element.status] === 'Recusado' || requestStatusEnums[element.status] === 'Cancelado'"
+                                        [class.badge-success]="requestStatusEnums[element.status] === 'Concluído'">
+                                        {{ requestStatusEnums[element.status] }}
                                     </span>
                                 </mat-cell>
                             </ng-container>

@@ -1,1 +1,142 @@
-<p>dashboard de pedidos!</p>
+<div class="main-content">
+    <div class="row justify-content-between">
+        <div class="col-12 col-md-3">
+            <mat-form-field appearance="outline">
+                <mat-label>Pesquisar</mat-label>
+                <input matInput placeholder="Observação, Situação" (keyup)="applyFilter($event.target.value)">
+                <mat-icon matSuffix>search</mat-icon>
+                <mat-hint>Exemplo: Em andamento</mat-hint>
+            </mat-form-field>
+        </div>
+
+        <div class="col-12 col-md-3 mr-1 d-flex justify-content-end">
+            <button color="primary" rel="tooltip" mat-fab matTooltip="Adicionar fornecedor">
+                <i class="material-icons">add</i>
+            </button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header card-header-info">
+                    <h4 class="card-title">Pedidos de Compras</h4>
+                </div>
+                <div class="card-body">
+                    <div class="table table-responsive mat-elevation-z8">
+                        <mat-table matSortDisableClear matSortActive="id" matSortDirection="asc" multiTemplateDataRows
+                            [dataSource]="dataSource" matSort>
+                            <ng-container matColumnDef="id">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header>#</mat-header-cell>
+                                <mat-cell *matCellDef="let element" data-label="#">
+                                    {{ element.id }}
+                                </mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="provider">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header>Fornecedor</mat-header-cell>
+                                <mat-cell *matCellDef="let element" data-label="Fornecedor">
+                                    {{ element.provider.companyName }}
+                                </mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="createdAt">
+                                <mat-header-cell *matHeaderCellDef>Criado em</mat-header-cell>
+                                <mat-cell *matCellDef="let element" data-label="Criado em">
+                                    {{ element.createdAt | dateFormat }}
+                                </mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="deadline">
+                                <mat-header-cell *matHeaderCellDef>Data de entrega</mat-header-cell>
+                                <mat-cell *matCellDef="let element" data-label="Data de entrega">
+                                    {{ element.deadlineDate | dateFormat }}
+                                </mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="status">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header>Situação</mat-header-cell>
+                                <mat-cell *matCellDef="let element" data-label="Situação">
+                                    <span class="badge"
+                                        [class.badge-warning]="orderStatusEnum[element.status] === 'Em análise'"
+                                        [class.badge-danger]="orderStatusEnum[element.status] === 'Recusado' || orderStatusEnum[element.status] === 'Cancelado'"
+                                        [class.badge-success]="orderStatusEnum[element.status] === 'Concluído'">
+                                        {{ orderStatusEnum[element.status] }}
+                                    </span>
+                                </mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="actions">
+                                <mat-header-cell *matHeaderCellDef>Ações</mat-header-cell>
+                                <mat-cell class="td-actions text-center" *matCellDef="let element" data-label="Ações">
+                                    <div class="btn-group">
+                                        <button (click)="expandedElement = expandedElement === element ? null : element"
+                                            class="btn btn-info" mat-raised-button matTooltip="Visualizar Materiais"
+                                            rel="tooltip" type="button">
+                                            <i class="material-icons">table_view</i>
+                                        </button>
+                                        <button class="btn btn-warning" rel="tooltip" mat-raised-button
+                                            matTooltip="Editar" type="button">
+                                            <i class="material-icons">edit</i>
+                                        </button>
+                                        <button class="btn btn-danger" rel="tooltip" mat-raised-button
+                                            matTooltip="Excluir" type="button">
+                                            <i class="material-icons">close</i>
+                                        </button>
+                                    </div>
+                                </mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="expandedMaterialPrice">
+                                <mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
+                                    <div [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                                        <table class="table table-responsive table--expanded">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Material</th>
+                                                    <th scope="col">Quantidade</th>
+                                                    <th scope="col">Preço Unitário</th>
+                                                    <th scope="col">Subtotal</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let orderMaterial of getOrdersMaterials(element.id)">
+                                                    <td scope="row">{{ orderMaterial.material.description }}</td>
+                                                    <td>{{ orderMaterial.materialAmount }}</td>
+                                                    <td>{{ orderMaterial.unityPrice | currencyBrl }}</td>
+                                                    <td>{{ (orderMaterial.unityPrice * orderMaterial.materialAmount) | currencyBrl }}
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <strong>Frete</strong>
+                                                    </th>
+                                                    <td>{{ element.fare | currencyBrl }}</td>
+                                                    <th scope="row">
+                                                        <strong>TOTAL</strong>
+                                                    </th>
+                                                    <td>
+                                                        <strong>{{ (getTotalPrice(element.id) + element.fare) | currencyBrl }}</strong>
+                                                    </td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </mat-cell>
+                            </ng-container>
+
+                            <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+                            <mat-row class="table__row" *matRowDef="let element; columns: columnsToDisplay;">
+                            </mat-row>
+                            <mat-row [class.table__row--expanded]="expandedElement === element"
+                                class="table__row table__row--details"
+                                *matRowDef="let element; columns: ['expandedMaterialPrice'];"></mat-row>
+                        </mat-table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
