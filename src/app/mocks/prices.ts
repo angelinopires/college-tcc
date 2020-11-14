@@ -11,7 +11,7 @@ export class Prices {
         description: "Essa é a descrição da cotação",
         id: 1,
         requestDate: "2019-10-18T16:37:58.979Z",
-        status: "Em andamento",
+        status: "WAITING",
         fare: 23.12,
         responseDate: '2020-10-21T16:37:58.979Z',
         suggestedDate: '2020-10-30T16:37:58.979Z'
@@ -21,7 +21,7 @@ export class Prices {
         description: "Essa é a descrição da cotação",
         id: 2,
         requestDate: "2019-10-19T16:37:58.979Z",
-        status: "Concluído",
+        status: "DONE",
         fare: 23.12,
         responseDate: '2020-10-21T16:37:58.979Z',
         suggestedDate: '2020-10-30T16:37:58.979Z'
@@ -31,7 +31,7 @@ export class Prices {
         description: "Essa é a descrição da cotação",
         id: 3,
         requestDate: "2019-10-20T16:37:58.979Z",
-        status: "Em andamento",
+        status: "CANCELED",
         fare: 123.12,
         responseDate: '2020-10-21T16:37:58.979Z',
         suggestedDate: '2020-10-30T16:37:58.979Z'
@@ -41,7 +41,7 @@ export class Prices {
         description: "Essa é a descrição da cotação",
         id: 4,
         requestDate: "2019-10-20T16:37:58.979Z",
-        status: "Concluído",
+        status: "DONE",
         fare: 1023.12,
         responseDate: '2020-10-18T16:37:58.979Z',
         suggestedDate: '2020-10-30T16:37:58.979Z'
@@ -51,7 +51,7 @@ export class Prices {
         description: "Essa é a descrição da cotação",
         id: 5,
         requestDate: "2019-10-20T16:37:58.979Z",
-        status: "Em andamento",
+        status: "WAITING",
       }
     ]
   }

@@ -16,6 +16,12 @@
       "@authentication/*": [
         "src/app/modules/authentication/*"
       ],
+      "@enums": [
+        "src/app/enums"
+      ],
+      "@enums/*": [
+        "src/app/enums/*"
+      ],
       "@home": [
         "src/app/modules/home"
       ],

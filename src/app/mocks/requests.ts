@@ -14,50 +14,50 @@ export class Requests {
         id: 1,
         justification: "Preciso desse material para trabalhar.",
         materials: this.materials.getRandomMaterials(0, 5),
-        priority: "Alta",
+        priority: "LOW",
         requestDate: "2019-10-18T16:37:58.979Z",
         requester: this.users.getUserById(1),
-        status: "Em análise"
+        status: "VALIDATION"
       },
       {
         desiredDate: "2019-10-19T16:37:58.979Z",
         id: 2,
         justification: "Preciso desse material para trabalhar.",
         materials: this.materials.getRandomMaterials(5, 10),
-        priority: "Baixa",
+        priority: "LOW",
         requestDate: "2019-10-18T16:37:58.979Z",
         requester: this.users.getUserById(2),
-        status: "Em análise"
+        status: "VALIDATION"
       },
       {
         desiredDate: "2019-10-20T16:37:58.979Z",
         id: 3,
         justification: "Preciso desse material para trabalhar.",
         materials: this.materials.getRandomMaterials(10, 15),
-        priority: "Crítica",
+        priority: "HIGH",
         requestDate: "2019-10-18T16:37:58.979Z",
         requester: this.users.getUserById(3),
-        status: "Concluído"
+        status: "DECLINED"
       },
       {
         desiredDate: "2019-10-20T16:37:58.979Z",
         id: 4,
         justification: "Preciso desse material para trabalhar.",
         materials: this.materials.getRandomMaterials(15, 20),
-        priority: "Baixa",
+        priority: "LOW",
         requestDate: "2019-10-18T16:37:58.979Z",
         requester: this.users.getUserById(4),
-        status: "Negado"
+        status: "CANCELED"
       },
       {
         desiredDate: "2019-10-20T16:37:58.979Z",
         id: 5,
         justification: "Preciso desse material para trabalhar.",
         materials: this.materials.getRandomMaterials(20, 25),
-        priority: "Alta",
+        priority: "CRITICAL",
         requestDate: "2019-10-18T16:37:58.979Z",
         requester: this.users.getUserById(4),
-        status: "Concluído"
+        status: "DONE"
       }
     ]
   }
