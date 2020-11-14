@@ -1,4 +1,4 @@
-import { Material, Request, RequestMaterial, User } from '@projectTypes/index'
+import { Request, RequestWOMaterial } from '@projectTypes/index'
 import { Materials } from '@mocks/materials'
 import { Users } from '@mocks/users'
 
@@ -68,5 +68,14 @@ export class Requests {
 
   public getAllRequests (): Request[] {
     return this.requests
+  }
+
+  public getRequestWithoutMaterials (id: number): RequestWOMaterial {
+    const request = this.getRequestById(id)
+    const { materials, ...rest } = request
+
+    return {
+      ...rest
+    }
   }
 }

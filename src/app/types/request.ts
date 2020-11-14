@@ -10,3 +10,5 @@ export interface Request {
   requester: User;
   status: string; // TODO: deveria ser um ENUM
 }
+
+export type RequestWOMaterial = Omit<Request, 'materials'>

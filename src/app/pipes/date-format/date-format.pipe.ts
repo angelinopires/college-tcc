@@ -6,8 +6,9 @@ import { DatePipe } from '@angular/common';
 })
 
 export class DateFormatPipe extends DatePipe implements PipeTransform {
+  transform(value: string, args?: any): string {
+    if (!value) return '-'
 
-  transform(value: any, args?: any): any {
     return super.transform(value, 'dd/MM/yyyy');
   }
 }
