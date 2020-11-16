@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
+
+// SERVICES
+import { LoadingService } from '@services/loading/loading.service';
 import { LoginService } from '@services/login/login.service';
 
 @Component({
@@ -13,6 +16,7 @@ export class LoginComponent {
 
   constructor (
     private _formBuilder: FormBuilder,
+    private _loadingService: LoadingService,
     private _loginService: LoginService
     ) {
       this.loginForm = this._formBuilder.group({
@@ -22,10 +26,15 @@ export class LoginComponent {
     }
 
   public onLoginSubmit(): void {
+    this._loadingService.show()
+
     if (this.loginForm.valid && this.loginForm.dirty) {
       const { email, password } = this.loginForm.value
 
-      this._loginService.login(email, password)
+      setTimeout(() => {
+        this._loginService.login(email, password)
+        this._loadingService.hide()
+      }, 2000)
     }
   }
 }

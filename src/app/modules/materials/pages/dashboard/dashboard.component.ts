@@ -12,16 +12,16 @@ import { MaterialService } from '@services/material/material.service';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
-  materialSubscription: Subscription
   dataSource = new MatTableDataSource();
   columnsToDisplay = ['id', 'description', 'unity', 'group'];
-
   @ViewChild(MatSort) sort: MatSort;
+  materialSubscription: Subscription
+
 
   constructor (private _materialService: MaterialService) {}
 
   public ngOnInit (): void {
-    this.setMaterials()
+    this._setMaterials()
   }
 
   public ngAfterViewInit (): void {
@@ -32,17 +32,17 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
     this.materialSubscription && this.materialSubscription.unsubscribe()
   }
 
-  public setMaterials (): void {
+  public applyFilter (filterValue: string): void {
+    this.dataSource.filter = filterValue.trim().toLocaleLowerCase()
+  }
+
+  private _setMaterials (): void {
     this._materialService.fetchMaterials()
 
     this.materialSubscription = this._materialService.materials.subscribe(materials => {
-      if (materials.length > 0) {
-        this.dataSource.data = materials
-      }
-    })
-  }
+      if (materials.length <= 0) return
 
-  public applyFilter (filterValue: string): void {
-    this.dataSource.filter = filterValue.trim().toLocaleLowerCase()
+      this.dataSource = new MatTableDataSource(materials)
+    })
   }
 }

@@ -17,7 +17,7 @@ export class CurrencyPipe implements PipeTransform {
     digitsInfo: string = '0.2-2',
     locale: string = 'pt'): string | null {
     if (!value) {
-      return;
+      return '-';
     }
 
     return formatCurrency(

@@ -1,8 +1,9 @@
 import { Groups } from './groups'
-import { Material, RequestMaterial} from '@projectTypes/index'
+import { Material, RequestMaterial } from '@projectTypes/index'
 
 export class Materials {
   materials: Material[] = []
+  materialsPrice: RequestMaterial[] = []
   groups = new Groups()
 
   constructor () {
@@ -233,24 +234,38 @@ export class Materials {
         group: this.groups.getGroupById(5)
       }
     ]
+
+    this.materialsPrice = this.materials.map(material => {
+      return {
+        ...material,
+        amount: 1000
+      }
+    })
   }
 
   public getMaterialById (id: number): Material {
     return this.materials.find(material => material.id === id)
   }
 
+  public getRequestMaterialById (id: number): RequestMaterial {
+    return this.materialsPrice.find(material => material.id === id)
+  }
+
   public getAllMaterials (): Material[] {
     return this.materials
   }
 
+  public getAllRequestMaterials (): RequestMaterial[] {
+    return this.materialsPrice
+  }
+
   public getRandomMaterials (startPosition: number, endPosition: number): RequestMaterial[] {
     let requestMaterials: RequestMaterial[] = []
-    const materials = this.getAllMaterials()
+    const materials = this.getAllRequestMaterials()
 
     for (startPosition; startPosition < endPosition; startPosition++) {
       const material = {
-        ...materials[startPosition],
-        amount: startPosition + endPosition
+        ...materials[startPosition]
       }
       requestMaterials.push(material)
     }

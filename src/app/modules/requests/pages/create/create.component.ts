@@ -6,16 +6,18 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
 import * as moment from 'moment';
 
+// COMPONENTS
+import { FeedbackModalComponent } from '@shared/components';
+
 // SERVICES
 import { LoadingService } from '@services/loading/loading.service';
 import { LoginService } from '@services/login/login.service';
 import { MaterialService } from '@services/material/material.service';
+import { RequestService } from '@services/request/request.service';
 
 // TYPES
 import { Material, Request, RequestMaterial,  User } from '@projectTypes/index'
 import { RequestPriority } from '@enums';
-import { RequestService } from '@services/request/request.service';
-import { FeedbackModalComponent } from '@shared/components';
 
 interface RequestItem {
   amount: number;
@@ -122,13 +124,13 @@ export class CreateComponent implements AfterViewInit, OnDestroy, OnInit {
     this._requestService.setNewRequest(newRequest)
 
     setTimeout(() => {
-      this.giveFeedback()
+      this._giveFeedback()
       this._clearForms()
       this._loadingService.hide()
     }, 2000)
   }
 
-  public giveFeedback(): void {
+  private _giveFeedback(): void {
     this._dialog.open(FeedbackModalComponent, {
       data: {
         title: 'Solicitação criada com sucesso!',

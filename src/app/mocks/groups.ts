@@ -15,11 +15,11 @@ export class Groups {
       },
       {
         id: 3,
-        description: "Escritorio"
+        description: "Escritório"
       },
       {
         id: 4,
-        description: "Equipamento de protecao individual"
+        description: "Equipamento de proteção individual"
       },
       {
         id: 5,
