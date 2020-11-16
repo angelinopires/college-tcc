@@ -77,7 +77,7 @@
                                 <mat-cell *matCellDef="let element" data-label="Situação">
                                     <span class="badge" [class.badge-warning]="requestStatusEnums[element.status] === 'Em análise'"
                                         [class.badge-danger]="requestStatusEnums[element.status] === 'Recusado' || requestStatusEnums[element.status] === 'Cancelado'"
-                                        [class.badge-success]="requestStatusEnums[element.status] === 'Concluído'">
+                                        [class.badge-success]="requestStatusEnums[element.status] === 'Concluído' || requestStatusEnums[element.status] === 'Aprovada'">
                                         {{ requestStatusEnums[element.status] }}
                                     </span>
                                 </mat-cell>
@@ -90,6 +90,10 @@
                                         <button (click)="expandedElement = expandedElement === element ? null : element" class="btn btn-info"
                                             mat-raised-button matTooltip="Visualizar Materiais" rel="tooltip" type="button">
                                             <i class="material-icons">table_view</i>
+                                        </button>
+                                        <button *ngIf="requestStatusEnums[element.status] === 'Em análise'" class="btn btn-success" rel="tooltip"
+                                            mat-raised-button matTooltip="Aprovar" type="button">
+                                            <i class="material-icons">done</i>
                                         </button>
                                         <button class="btn btn-warning" rel="tooltip" mat-raised-button matTooltip="Editar" type="button">
                                             <i class="material-icons">edit</i>
@@ -109,14 +113,18 @@
                                             <tr>
                                                 <th scope="col">#</th>
                                                 <th scope="col">Material</th>
+                                                <td scope="col">Tipo de Unidade</td>
                                                 <th scope="col">Quantidade</th>
+                                                <th scope="col">Grupo</th>
                                             </tr>
                                             </thead>
                                             <tbody>
                                               <tr *ngFor="let material of element.materials">
                                                 <td scope="row">{{ material.id }}</td>
                                                 <td>{{ material.description }}</td>
+                                                <td>{{ material.unity }}</td>
                                                 <td>{{ material.amount }}</td>
+                                                <td>{{ material.group.description }}</td>
                                               </tr>
                                             </tbody>
                                           </table>

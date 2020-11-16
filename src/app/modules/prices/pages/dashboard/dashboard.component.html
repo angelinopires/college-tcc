@@ -10,7 +10,7 @@
     </div>
 
     <div class="col-12 col-md-3 mr-1 d-flex justify-content-end">
-      <button color="primary" rel="tooltip" mat-fab matTooltip="Adicionar fornecedor">
+      <button [routerLink]="['/cotacoes/criar']" color="primary" rel="tooltip" mat-fab matTooltip="Criar cotação">
         <i class="material-icons">add</i>
       </button>
     </div>
@@ -34,7 +34,7 @@
               </ng-container>
 
               <ng-container matColumnDef="description">
-                <mat-header-cell *matHeaderCellDef>Observação</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Observação</mat-header-cell>
                 <mat-cell *matCellDef="let element" data-label="Observação">
                   {{ element.description }}
                 </mat-cell>
@@ -42,14 +42,14 @@
 
 
               <ng-container matColumnDef="requestDate">
-                <mat-header-cell *matHeaderCellDef>Criado em</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Criado em</mat-header-cell>
                 <mat-cell *matCellDef="let element" data-label="Criado em">
                   {{ element.requestDate | dateFormat }}
                 </mat-cell>
               </ng-container>
 
               <ng-container matColumnDef="deadline">
-                <mat-header-cell *matHeaderCellDef>Data Desejada</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Data Desejada</mat-header-cell>
                 <mat-cell *matCellDef="let element" data-label="Data Desejada">
                   {{ element.deadlineDate | dateFormat }}
                 </mat-cell>
@@ -67,14 +67,14 @@
               </ng-container>
 
               <ng-container matColumnDef="responseDate">
-                <mat-header-cell *matHeaderCellDef>Respondido em</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Respondido em</mat-header-cell>
                 <mat-cell *matCellDef="let element" data-label="Respondido em">
                   {{ element.responseDate | dateFormat }}
                 </mat-cell>
               </ng-container>
 
               <ng-container matColumnDef="suggestedDate">
-                <mat-header-cell *matHeaderCellDef>Prazo sugerido</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Prazo sugerido</mat-header-cell>
                 <mat-cell *matCellDef="let element" data-label="Prazo sugerido">
                   {{ element.suggestedDate | dateFormat }}
                 </mat-cell>
@@ -84,13 +84,11 @@
                 <mat-header-cell *matHeaderCellDef>Ações</mat-header-cell>
                 <mat-cell class="td-actions text-center" *matCellDef="let element" data-label="Ações">
                   <div class="btn-group">
-                    <ng-template [ngIf]="!!element.fare && !!element.responseDate && !!element.suggestedDate">
-                      <button (click)="expandedElement = expandedElement === element ? null : element"
-                        class="btn btn-info" mat-raised-button matTooltip="Visualizar Materiais" rel="tooltip"
-                        type="button">
-                        <i class="material-icons">table_view</i>
-                      </button>
-                    </ng-template>
+                    <button (click)="expandedElement = expandedElement === element ? null : element"
+                      class="btn btn-info" mat-raised-button matTooltip="Visualizar Materiais" rel="tooltip"
+                      type="button">
+                      <i class="material-icons">table_view</i>
+                    </button>
                     <button class="btn btn-warning" rel="tooltip" mat-raised-button matTooltip="Editar" type="button">
                       <i class="material-icons">edit</i>
                     </button>
@@ -118,9 +116,9 @@
                         <tr *ngFor="let materialPrice of getMaterialsPrices(element.id)">
                           <td scope="row">{{ materialPrice.provider.companyName }}</td>
                           <td>{{ materialPrice.material.description }}</td>
-                          <td>{{ materialPrice.materialAmount }}</td>
+                          <td>{{ materialPrice.material.amount }}</td>
                           <td>{{ materialPrice.unityPrice | currencyBrl }}</td>
-                          <td>{{ (materialPrice.unityPrice * materialPrice.materialAmount) | currencyBrl }}
+                          <td>{{ (materialPrice.unityPrice * materialPrice.material.amount) | currencyBrl }}
                           </td>
                         </tr>
                       </tbody>

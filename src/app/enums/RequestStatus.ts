@@ -1,6 +1,7 @@
 export enum RequestStatus {
-  VALIDATION = 'Em análise',
-  DECLINED = 'Recusado',
+  APPROVED = 'Aprovada',
   CANCELED = 'Cancelado',
-  DONE = 'Concluído'
+  DECLINED = 'Recusado',
+  DONE = 'Concluído',
+  VALIDATION = 'Em análise'
 }

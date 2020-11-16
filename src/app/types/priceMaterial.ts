@@ -1,10 +1,9 @@
-import { Material, Provider, RequestWOMaterial } from '@projectTypes/index'
+import { RequestMaterial, Provider, RequestWOMaterial } from '@projectTypes/index'
 
 export interface PriceMaterial {
   priceId: number;
-  material: Material;
+  material: RequestMaterial;
   request: RequestWOMaterial;
   provider: Provider;
-  unityPrice: number;
-  materialAmount: number;
+  unityPrice?: number;
 }

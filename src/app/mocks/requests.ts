@@ -27,7 +27,7 @@ export class Requests {
         priority: "LOW",
         requestDate: "2019-10-18T16:37:58.979Z",
         requester: this.users.getUserById(2),
-        status: "VALIDATION"
+        status: "APPROVED"
       },
       {
         desiredDate: "2019-10-20T16:37:58.979Z",
@@ -58,6 +58,16 @@ export class Requests {
         requestDate: "2019-10-18T16:37:58.979Z",
         requester: this.users.getUserById(4),
         status: "DONE"
+      },
+      {
+        desiredDate: "2019-10-20T16:37:58.979Z",
+        id: 6,
+        justification: "",
+        materials: this.materials.getRandomMaterials(12, 22),
+        priority: "CRITICAL",
+        requestDate: "2019-10-18T16:37:58.979Z",
+        requester: this.users.getUserById(1),
+        status: "APPROVED"
       }
     ]
   }

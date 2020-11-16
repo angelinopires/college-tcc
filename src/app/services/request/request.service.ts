@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { distinctUntilChanged } from 'rxjs/operators';
+import { Injectable } from '@angular/core';
 
 // MOCKS
 import { Requests } from '@mocks/requests'
@@ -20,16 +20,6 @@ export class RequestService {
 
   constructor(private _storageService: StorageService) { }
 
-  public setNewRequest (request: Request): void {
-    if (!request) return
-
-    const requests = this.getRequestsFromStorage()
-    requests.push(request)
-
-    this._setRequestsSubject(requests)
-    this._setLocalStorage(requests)
-  }
-
   public getRequestsFromStorage (): Request[] {
     return JSON.parse(this._storageService.getItem('requests'))
   }
@@ -39,9 +29,18 @@ export class RequestService {
 
     if (!requestsFromStorage) {
       const requests = new Requests()
-
       this._setLocalStorage(requests.getAllRequests())
     }
+  }
+
+  public setNewRequest (request: Request): void {
+    if (!request) return
+
+    const requests = this.getRequestsFromStorage()
+    requests.push(request)
+
+    this._setRequestsSubject(requests)
+    this._setLocalStorage(requests)
   }
 
   public fetchRequests (): void {

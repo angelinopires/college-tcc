@@ -6,6 +6,7 @@ import { OrderService } from '@services/order/order.service';
 import { PriceService } from '@services/price/price.service';
 import { ProvidersService } from '@services/providers/providers.service';
 import { RequestService } from '@services/request/request.service';
+import { StorageService } from '@services/storage/storage.service';
 import { UserService } from '@services/user/user.service';
 
 @Component({
@@ -20,15 +21,20 @@ export class AppComponent implements OnInit {
     private _priceService: PriceService,
     private _providerService: ProvidersService,
     private _requestService: RequestService,
+    private _storageService: StorageService,
     private _userService: UserService
   ) { }
 
   public ngOnInit (): void {
-    this._materialService.initializeMaterials()
-    this._orderService.initializeOrders()
-    this._priceService.initializePrices()
-    this._providerService.initializeProviders()
-    this._requestService.initializeRequests()
-    this._userService.initializeUsers()
+    this._storageService.clear()
+
+    setTimeout(() => {
+      this._materialService.initializeMaterials()
+      this._orderService.initializeOrders()
+      this._priceService.initializePrices()
+      this._providerService.initializeProviders()
+      this._requestService.initializeRequests()
+      this._userService.initializeUsers()
+    }, 500)
   }
 }
