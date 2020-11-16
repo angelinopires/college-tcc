@@ -1,14 +1,18 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { MaterialService } from '@services/material/material.service';
-import { MatTableDataSource } from '@angular/material/table';
+import { AfterViewInit, Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { Subscription } from 'rxjs';
+
+// SERVICES
+import { MaterialService } from '@services/material/material.service';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit, AfterViewInit {
+export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
+  materialSubscription: Subscription
   dataSource = new MatTableDataSource();
   columnsToDisplay = ['id', 'description', 'unity', 'group'];
 
@@ -16,15 +20,29 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   constructor (private _materialService: MaterialService) {}
 
-  ngOnInit (): void {
-    this.dataSource.data = this._materialService.getMaterials()
+  public ngOnInit (): void {
+    this.setMaterials()
   }
 
-  ngAfterViewInit (): void {
+  public ngAfterViewInit (): void {
     this.dataSource.sort = this.sort
   }
 
-  applyFilter (filterValue: string): void {
+  public ngOnDestroy (): void {
+    this.materialSubscription && this.materialSubscription.unsubscribe()
+  }
+
+  public setMaterials (): void {
+    this._materialService.fetchMaterials()
+
+    this.materialSubscription = this._materialService.materials.subscribe(materials => {
+      if (materials.length > 0) {
+        this.dataSource.data = materials
+      }
+    })
+  }
+
+  public applyFilter (filterValue: string): void {
     this.dataSource.filter = filterValue.trim().toLocaleLowerCase()
   }
 }

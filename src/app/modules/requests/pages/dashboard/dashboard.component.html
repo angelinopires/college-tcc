@@ -3,14 +3,14 @@
         <div class="col-12 col-md-3">
             <mat-form-field appearance="outline">
                 <mat-label>Pesquisar</mat-label>
-                <input matInput placeholder="Prioridade, Situação" (keyup)="applyFilter($event.target.value)">
+                <input matInput placeholder="Pesquisar" (keyup)="applyFilter($event.target.value)">
                 <mat-icon matSuffix>search</mat-icon>
-                <mat-hint>Exemplo: Alta, Em análise</mat-hint>
+                <mat-hint>Exemplo: Observação, datas</mat-hint>
             </mat-form-field>
         </div>
 
         <div class="col-12 col-md-3 mr-1 d-flex justify-content-end">
-            <button color="primary" rel="tooltip" mat-fab matTooltip="Adicionar fornecedor">
+            <button [routerLink]="['/solicitacoes/criar']" color="primary" rel="tooltip" mat-fab matTooltip="Adicionar solicitação">
                 <i class="material-icons">add</i>
             </button>
         </div>
@@ -34,7 +34,7 @@
                             </ng-container>
 
                             <ng-container matColumnDef="requester">
-                                <mat-header-cell *matHeaderCellDef mat-sort-header>Solicitante</mat-header-cell>
+                                <mat-header-cell *matHeaderCellDef>Solicitante</mat-header-cell>
                                 <mat-cell *matCellDef="let element" data-label="Solicitante">
                                     {{ element.requester.name }}
                                 </mat-cell>
@@ -43,19 +43,19 @@
                             <ng-container matColumnDef="justification">
                                 <mat-header-cell *matHeaderCellDef mat-sort-header>Observação</mat-header-cell>
                                 <mat-cell *matCellDef="let element" data-label="Observação">
-                                    {{ element.justification }}
+                                    {{ element.justification || '-' }}
                                 </mat-cell>
                             </ng-container>
 
                             <ng-container matColumnDef="requestDate">
-                                <mat-header-cell *matHeaderCellDef>Data Requisitada</mat-header-cell>
+                                <mat-header-cell *matHeaderCellDef mat-sort-header>Data Requisitada</mat-header-cell>
                                 <mat-cell *matCellDef="let element" data-label="Data Requisitada">
                                     {{ element.requestDate | dateFormat }}
                                 </mat-cell>
                             </ng-container>
 
                             <ng-container matColumnDef="desiredDate">
-                                <mat-header-cell *matHeaderCellDef>Data Desejada</mat-header-cell>
+                                <mat-header-cell *matHeaderCellDef mat-sort-header>Data Desejada</mat-header-cell>
                                 <mat-cell *matCellDef="let element" data-label="Data Desejada">
                                     {{ element.desiredDate | dateFormat }}
                                 </mat-cell>

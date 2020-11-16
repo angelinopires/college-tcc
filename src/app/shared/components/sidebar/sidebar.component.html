@@ -7,8 +7,7 @@
 
 <div class="sidebar-wrapper">
     <ul class="nav">
-        <li *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item" routerLinkActive="active"
-            [routerLinkActiveOptions]="{exact: true}">
+        <li *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item" routerLinkActive="active">
             <a class="nav-link" [routerLink]="menuItem.path">
                 <i class="material-icons">{{menuItem.icon}}</i>
                 <p>{{menuItem.title}}</p>

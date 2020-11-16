@@ -1,6 +1,5 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule, registerLocaleData } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
@@ -13,6 +12,7 @@ import { AppComponent } from './app.component';
 
 // MODULES
 import { AppRoutingModule } from './app.routing';
+import { SharedModule } from '@shared/shared.module';
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -23,10 +23,9 @@ import { AppRoutingModule } from './app.routing';
     AppRoutingModule,
     BrowserAnimationsModule,
     CommonModule,
-    FormsModule,
     HttpClientModule,
-    ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    SharedModule
   ]
 })
 export class AppModule { }
