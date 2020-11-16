@@ -7,7 +7,7 @@ export interface User {
   email: string;
   id: number;
   name: string;
-  password: string;
+  password?: string;
   permission: Permission;
 }
 

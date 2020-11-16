@@ -1,14 +1,14 @@
+import { BehaviorSubject } from 'rxjs';
+import { distinctUntilChanged } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
 // SERVICES
-import { MaterialService } from '@services/material/material.service';
-import { OrderService } from '@services/order/order.service';
-import { PriceService } from '@services/price/price.service';
-import { ProvidersService } from '@services/providers/providers.service';
 import { RequestService } from '@services/request/request.service';
 import { StorageService } from '@services/storage/storage.service';
-import { UserService } from '@services/user/user.service';
+
+// TYPES
+import { User } from '@projectTypes/index'
 
 RequestService
 @Injectable({
@@ -16,43 +16,69 @@ RequestService
 })
 
 export class LoginService {
+  private _userLoggedInSubject = new BehaviorSubject<User>({} as User);
+  public userLoggedIn = this._userLoggedInSubject.asObservable().pipe(distinctUntilChanged());
+
   constructor(
-    private _materialService: MaterialService,
-    private _orderService: OrderService,
-    private _priceService: PriceService,
-    private _providerService: ProvidersService,
-    private _requestService: RequestService,
     private _router: Router,
     private _storageService: StorageService,
-    private _userService: UserService
   ) { }
+
+  public login (email: string, password: string): void {
+    const user: User = {
+      id: 1,
+      name: "Gerente de Compras",
+      email,
+      active: true,
+      permission: {
+        id: 1,
+        description: "Administrador"
+      },
+      department: {
+        id: 1,
+        manager: {
+          id: 1,
+          name: "Henrique Pinheiro",
+          email: "henrique@email.com.br",
+          active: true,
+          permission: {
+            id: 1,
+            description: "Administrador"
+          },
+        },
+        description: "Departamento de Compras",
+        active: true
+      }
+    }
+
+    this._setUserLoggedIn(user)
+    this._redirect('/solicitacoes')
+  }
+
+  public logout (): void {
+    this._storageService.removeItem('userLoggedIn')
+    this._redirect('/')
+  }
+
+  public fetchUser (): void {
+    const userFromStorage = this._getUserFromStorage()
+    this._setUserSubject(userFromStorage)
+  }
 
   private _redirect (path: string): void {
     this._router.navigate([`${path}`])
   }
 
-  public login (email: string, password: string): void {
-    const user = {
-      id: 1,
-      name: "Gerente de Compras",
-      email,
-      active: true,
-      permissionId: 1,
-      departmentId: 1
-    }
-
-    this._storageService.setItem('user', JSON.stringify(user))
-    this._materialService.initializeRequests()
-    this._orderService.initializeOrders()
-    this._priceService.initializePrices()
-    this._providerService.initializeProviders()
-    this._requestService.initializeRequests()
-    this._userService.initializeUsers()
-    this._redirect('/solicitacoes')
+  private _getUserFromStorage (): User {
+    return JSON.parse(this._storageService.getItem('userLoggedIn'))
   }
 
-  public logout (): void {
-    this._redirect('/')
-    this._storageService.clear()
+  private _setUserLoggedIn (user: User): void {
+    this._storageService.setItem('userLoggedIn', JSON.stringify(user))
+    this._setUserSubject(user)
+  }
+
+  private _setUserSubject (user: User): void {
+    this._userLoggedInSubject.next(user)
   }
 }

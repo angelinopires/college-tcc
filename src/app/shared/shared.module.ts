@@ -13,13 +13,15 @@ import { MaterialUiModule } from '@material-ui/material-ui.module';
 
 // SERVICES
 import { LoginService } from '@services/login/login.service';
+import { FeedbackModalComponent } from './components/feedback-modal/feedback-modal.component';
 
 @NgModule({
   declarations: [
     LoadingComponent,
     MainStructureComponent,
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
+    FeedbackModalComponent
   ],
   exports: [
     LoadingComponent,

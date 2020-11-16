@@ -9,7 +9,7 @@
             <form class="login__form" [formGroup]="loginForm" (submit)="onLoginSubmit()">
                 <mat-form-field class="login__input" appearance="outline">
                     <mat-label>Email</mat-label>
-                    <input matInput type="email" placeholder="Email" required formControlName="email" />
+                    <input matInput type="email" placeholder="Email" required formControlName="email" autocomplete="email" />
                 </mat-form-field>
 
                 <mat-form-field class="login__input" appearance="outline">
@@ -20,7 +20,7 @@
 
                 <a class="login__forgotPassword" mat-button href="#">Esqueceu a senha?</a>
 
-                <button [disabled]="!loginForm.valid" mat-raised-button class="login__button" color="primary"
+                <button [disabled]="loginForm.invalid" mat-raised-button class="login__button" color="primary"
                     type="submit">Entrar</button>
             </form>
         </mat-card-content>

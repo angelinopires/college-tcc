@@ -1,7 +1,8 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
+import { Subscription } from 'rxjs';
 
 // SERVICES
 import { RequestService } from '@services/request/request.service';
@@ -21,26 +22,42 @@ import { RequestStatus, RequestPriority } from '@enums'
   ])]
 })
 
-export class DashboardComponent implements OnInit, AfterViewInit {
-  dataSource = new MatTableDataSource();
+export class DashboardComponent implements AfterViewInit, OnDestroy, OnInit {
+  @ViewChild(MatSort) sort: MatSort;
   columnsToDisplay = ['id', 'requester', 'justification', 'requestDate', 'desiredDate', 'priority', 'status', 'actions'];
+  dataSource = new MatTableDataSource();
   expandedElement: Request | null;
+
   requestStatusEnums = RequestStatus
   requestPriorityEnums = RequestPriority
 
-  @ViewChild(MatSort) sort: MatSort;
+  requestSubscription: Subscription
 
   constructor (private _requestService: RequestService) {}
 
-  ngOnInit (): void {
-    this.dataSource.data = this._requestService.getRequests()
+  public ngOnInit (): void {
+    this._setRequestsList()
   }
 
-  ngAfterViewInit (): void {
+  public ngAfterViewInit (): void {
     this.dataSource.sort = this.sort
   }
 
-  applyFilter (filterValue: string): void {
+  public ngOnDestroy (): void {
+    this.requestSubscription && this.requestSubscription.unsubscribe()
+  }
+
+  public applyFilter (filterValue: string): void {
     this.dataSource.filter = filterValue.trim().toLocaleLowerCase()
+  }
+
+  private _setRequestsList (): void {
+    this._requestService.fetchRequests()
+
+    this._requestService.requests.subscribe(requests => {
+      if (requests.length <= 0) return
+
+      this.dataSource = new MatTableDataSource(requests)
+    })
   }
 }

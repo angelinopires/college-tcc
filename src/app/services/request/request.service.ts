@@ -1,20 +1,65 @@
 import { Injectable } from '@angular/core';
-import { StorageService } from '@services/storage/storage.service';
+import { BehaviorSubject } from 'rxjs';
+import { distinctUntilChanged } from 'rxjs/operators';
+
+// MOCKS
 import { Requests } from '@mocks/requests'
+
+// SERVICES
+import { StorageService } from '@services/storage/storage.service';
+
+// TYPES
+import { Request } from '@projectTypes/index'
 
 @Injectable({
   providedIn: 'root'
 })
 export class RequestService {
+  private _requestsSubject = new BehaviorSubject<Request[]>([] as Request[]);
+  public requests = this._requestsSubject.asObservable().pipe(distinctUntilChanged());
+
   constructor(private _storageService: StorageService) { }
 
-  public initializeRequests (): void {
-    const requests = new Requests()
+  public setNewRequest (request: Request): void {
+    if (!request) return
 
-    this._storageService.setItem('requests', JSON.stringify(requests.getAllRequests()))
+    const requests = this.getRequestsFromStorage()
+    requests.push(request)
+
+    this._setRequestsSubject(requests)
+    this._setLocalStorage(requests)
   }
 
-  public getRequests (): Request[] {
+  public getRequestsFromStorage (): Request[] {
     return JSON.parse(this._storageService.getItem('requests'))
+  }
+
+  public initializeRequests (): void {
+    const requestsFromStorage = this.getRequestsFromStorage()
+
+    if (!requestsFromStorage) {
+      const requests = new Requests()
+
+      this._setLocalStorage(requests.getAllRequests())
+    }
+  }
+
+  public fetchRequests (): void {
+    const requestsFromStorage = this.getRequestsFromStorage()
+    this._setRequestsSubject(requestsFromStorage)
+  }
+
+  public getLastRequestId (): number {
+    const requests = this.getRequestsFromStorage()
+
+    return requests[requests.length - 1].id
+  }
+
+  private _setRequestsSubject (requests: Request[]): void {
+    this._requestsSubject.next(requests)
+  }
+
+  private _setLocalStorage (requests: Request[]): void {
+    this._storageService.setItem('requests', JSON.stringify(requests))
   }
 }

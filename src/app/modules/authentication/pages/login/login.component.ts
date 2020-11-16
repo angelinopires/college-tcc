@@ -16,14 +16,14 @@ export class LoginComponent {
     private _loginService: LoginService
     ) {
       this.loginForm = this._formBuilder.group({
-        email: ['', Validators.required],
-        password: ['', Validators.required]
+        email: ['', Validators.compose([Validators.required, Validators.email])],
+        password: ['', Validators.compose([Validators.required, Validators.minLength(6)])]
       })
     }
 
-  onLoginSubmit(): void {
+  public onLoginSubmit(): void {
     if (this.loginForm.valid && this.loginForm.dirty) {
-      const { email, password} = this.loginForm.value
+      const { email, password } = this.loginForm.value
 
       this._loginService.login(email, password)
     }
