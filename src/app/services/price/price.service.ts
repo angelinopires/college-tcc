@@ -84,6 +84,20 @@ export class PriceService {
     this._setPricesMaterialsSubject(pricesMaterials)
   }
 
+  public setPriceStatus(id: number, status: string): void {
+    const pricesFromStorage = this.getPricesFromStorage()
+    const price = pricesFromStorage.find(price => price.id === id)
+    const priceIndex = pricesFromStorage.findIndex(price => price.id === id)
+
+    if (!price) return
+
+    price.status = status
+    pricesFromStorage[priceIndex] = price
+
+    this._setPricesSubject(pricesFromStorage)
+    this._setPricesLocalStorage(pricesFromStorage)
+  }
+
   private _setPricesLocalStorage (prices: Price[]): void {
     this._storageService.setItem('prices', JSON.stringify(prices))
   }

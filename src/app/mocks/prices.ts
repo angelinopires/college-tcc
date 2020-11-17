@@ -11,7 +11,7 @@ export class Prices {
         description: "Essa é a descrição da cotação",
         id: 1,
         requestDate: "2019-10-18T16:37:58.979Z",
-        status: "DONE",
+        status: "ANSWERED",
         fare: 23.12,
         responseDate: '2020-10-21T16:37:58.979Z',
         suggestedDate: '2020-10-30T16:37:58.979Z'
@@ -21,7 +21,7 @@ export class Prices {
         description: "Essa é a descrição da cotação",
         id: 2,
         requestDate: "2019-10-19T16:37:58.979Z",
-        status: "DONE",
+        status: "ANSWERED",
         fare: 23.12,
         responseDate: '2020-10-21T16:37:58.979Z',
         suggestedDate: '2020-10-30T16:37:58.979Z'

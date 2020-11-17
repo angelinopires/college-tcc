@@ -1,0 +1,224 @@
+<div class="main-content">
+    <div class="card">
+        <div class="card-header card-header-warning">
+            <h4 class="card-title">Passo 01</h4>
+            <p class="card-category">Escolha o fornecedor desejado</p>
+        </div>
+        <div class="card-body">
+            <form [formGroup]="orderForm">
+                <div class="row">
+                    <div class="col-12 col-md-4">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Fornecedores</mat-label>
+                            <mat-select formControlName="provider" required (change)="clearPriceForm()">
+                                <mat-option *ngFor="let provider of providersList" [value]="provider">
+                                    {{ provider.companyName }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div *ngIf="orderForm.valid" class="card mt-5">
+        <div class="card-header card-header-info">
+            <h4 class="card-title">Passo 02</h4>
+            <p class="card-category">Escolha a cotação desejada</p>
+        </div>
+        <div class="card-body">
+            <form class="table table-responsive mat-elevation-z8" *ngIf="dataSource.data.length > 0; else feedback"
+                [formGroup]="priceForm">
+                <mat-table matSortDisableClear matSortActive="id" matSortDirection="asc" multiTemplateDataRows
+                    [dataSource]="dataSource" matSort>
+
+                    <ng-container matColumnDef="radio">
+                        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                        <mat-radio-group formControlName="selectedPrice">
+                            <mat-cell *matCellDef="let element">
+                                <mat-radio-button [value]="element" [disabled]="!providerHasMaterialPrices(element.id)">
+                                </mat-radio-button>
+                            </mat-cell>
+                        </mat-radio-group>
+                    </ng-container>
+
+                    <ng-container matColumnDef="id">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>#</mat-header-cell>
+                        <mat-cell *matCellDef="let element" data-label="#">
+                            {{ element.id }}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="description">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Observação</mat-header-cell>
+                        <mat-cell *matCellDef="let element" data-label="Observação">
+                            {{ element.description }}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="requestDate">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Criado em</mat-header-cell>
+                        <mat-cell *matCellDef="let element" data-label="Criado em">
+                            {{ element.requestDate | dateFormat }}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="deadline">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Data Desejada</mat-header-cell>
+                        <mat-cell *matCellDef="let element" data-label="Data Desejada">
+                            {{ element.deadlineDate | dateFormat }}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="status">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Situação</mat-header-cell>
+                        <mat-cell *matCellDef="let element" data-label="Situação">
+                            <span class="badge"
+                                [class.badge-success]="priceStatusEnum[element.status] === 'Respondido'">
+                                {{ priceStatusEnum[element.status] }}
+                            </span>
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="responseDate">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Respondido em</mat-header-cell>
+                        <mat-cell *matCellDef="let element" data-label="Respondido em">
+                            {{ element.responseDate | dateFormat }}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="suggestedDate">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Prazo sugerido</mat-header-cell>
+                        <mat-cell *matCellDef="let element" data-label="Prazo sugerido">
+                            {{ element.suggestedDate | dateFormat }}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="actions">
+                        <mat-header-cell *matHeaderCellDef>Ações</mat-header-cell>
+                        <mat-cell class="td-actions text-center" *matCellDef="let element" data-label="Ações">
+                            <div class="btn-group">
+                                <button (click)="expandedElement = expandedElement === element ? null : element"
+                                    class="btn btn-info" mat-raised-button matTooltip="Visualizar Materiais"
+                                    rel="tooltip" type="button">
+                                    <i class="material-icons">table_view</i>
+                                </button>
+                            </div>
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="expandedMaterialPrice">
+                        <mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
+                            <div [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                                <table *ngIf="providerHasMaterialPrices(element.id); else noMaterialsFeedback"
+                                    class="table table-responsive table--expanded">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Material</th>
+                                            <th scope="col">Quantidade</th>
+                                            <th scope="col">Preço Unitário</th>
+                                            <th scope="col">Subtotal</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let materialPrice of getMaterialsPrices(element.id)">
+                                            <td>{{ materialPrice.material.description }}</td>
+                                            <td>{{ materialPrice.material.amount }}</td>
+                                            <td>{{ materialPrice.unityPrice | currencyBrl }}</td>
+                                            <td>{{ (materialPrice.unityPrice * materialPrice.material.amount) | currencyBrl }}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <ng-template #noMaterialsFeedback>
+                                    <p class="feedback">O fornecedor selecionado não possui nenhum material cotado.</p>
+                                </ng-template>
+                            </div>
+                        </mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+                    <mat-row class="table__row" [class.table__row--disabled]="!providerHasMaterialPrices(element.id)"
+                        *matRowDef="let element; columns: columnsToDisplay;">
+                    </mat-row>
+                    <mat-row [class.table__row--expanded]="expandedElement === element"
+                        class="table__row table__row--details"
+                        *matRowDef="let element; columns: ['expandedMaterialPrice'];"></mat-row>
+                </mat-table>
+            </form>
+
+            <ng-template #feedback>
+                <p>Não há cotações em aberto no momento.</p>
+            </ng-template>
+        </div>
+    </div>
+
+    <div *ngIf="priceForm.valid" class="card mt-5">
+        <div class="card-header card-header-warning">
+            <h4 class="card-title">Passo 03</h4>
+            <p class="card-category">Confira as informações</p>
+        </div>
+        <div class="card-body">
+            <div class="table table-responsive mat-elevation-z8">
+                <mat-table matSortDisableClear matSortActive="id" matSortDirection="asc"
+                    [dataSource]="materialDataSource" matSort>
+                    <ng-container matColumnDef="id">
+                        <mat-header-cell *matHeaderCellDef>#</mat-header-cell>
+                        <mat-cell *matCellDef="let element" data-label="#">
+                            {{ element.material.id }}
+                        </mat-cell>
+                        <mat-footer-cell *matFooterCellDef></mat-footer-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="description">
+                        <mat-header-cell *matHeaderCellDef>Material</mat-header-cell>
+                        <mat-cell *matCellDef="let element" data-label="Material">
+                            {{ element.material.description }}
+                        </mat-cell>
+                        <mat-footer-cell *matFooterCellDef>Frete:</mat-footer-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="amount">
+                        <mat-header-cell *matHeaderCellDef>Quantidade</mat-header-cell>
+                        <mat-cell *matCellDef="let element" data-label="Quantidade">
+                            {{ element.material.amount }}
+                        </mat-cell>
+                        <mat-footer-cell *matFooterCellDef>{{ getFarePrice() | currencyBrl }}</mat-footer-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="price">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Preco</mat-header-cell>
+                        <mat-cell *matCellDef="let element" data-label="Preco">
+                            {{ element.material.unityPrice | currencyBrl }}
+                        </mat-cell>
+                        <mat-footer-cell *matFooterCellDef>
+                            <strong>Total</strong>
+                        </mat-footer-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="subtotal">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Subtotal</mat-header-cell>
+                        <mat-cell *matCellDef="let element" data-label="Subtotal">
+                            {{ (element.unityPrice * element.material.amount) | currencyBrl }}
+                        </mat-cell>
+                        <mat-footer-cell *matFooterCellDef="let element">
+                            {{ getTotalPrice() | currencyBrl }}
+                        </mat-footer-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="materialColumns"></mat-header-row>
+                    <mat-row class="table__row" *matRowDef="let element; columns: materialColumns;"></mat-row>
+                    <mat-footer-row *matFooterRowDef="materialColumns"></mat-footer-row>
+                </mat-table>
+            </div>
+
+            <div class="row">
+                <div class="col-12 offset-md-10 col-md-2">
+                    <button (click)="createOrder()" mat-raised-button class="btn-block" color="primary"
+                        [disabled]="priceForm.invalid || orderForm.invalid">Enviar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

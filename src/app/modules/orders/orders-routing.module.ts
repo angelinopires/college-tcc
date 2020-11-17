@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 // COMPONENTS
-import { DashboardComponent } from '@orders/pages';
+import { CreateComponent, DashboardComponent } from '@orders/pages';
 import { MainStructureComponent } from '@shared/components';
 
 const routes: Routes = [
@@ -13,6 +13,10 @@ const routes: Routes = [
       {
         path: '',
         component: DashboardComponent
+      },
+      {
+        path: 'criar',
+        component: CreateComponent
       }
     ]
   }

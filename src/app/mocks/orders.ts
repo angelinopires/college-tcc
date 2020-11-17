@@ -17,7 +17,7 @@ export class Orders {
       },
       {
         id: 2,
-        status: "VALIDATION",
+        status: "SENDED",
         createdAt: "2019-10-19T16:37:58.979Z",
         provider: this.providers.getProviderById(2),
         fare: 399.99,

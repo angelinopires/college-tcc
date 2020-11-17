@@ -3,7 +3,8 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header card-header-info">
-                    <h4 class="card-title">Escolha os materiais</h4>
+                    <h4 class="card-title">Passo 01</h4>
+                    <p class="card-category">Selecione os materiais desejados</p>
                 </div>
                 <div class="card-body">
                     <div class="table table-responsive mat-elevation-z8"
@@ -133,7 +134,8 @@
 
     <div *ngIf="selectedMaterials.length > 0" class="card">
         <div class="card-header card-header-warning">
-            <h4 class="card-title">Preencha o formulário</h4>
+            <h4 class="card-title">Passo 02</h4>
+            <p class="card-category">Escolha suas preferências</p>
         </div>
         <div class="card-body">
             <form [formGroup]="priceForm" (submit)="createPriceMaterial()">

@@ -103,7 +103,7 @@ export class CreateComponent implements AfterViewInit, OnDestroy, OnInit {
     this.selectedMaterials.push(selectedMaterial)
   }
 
-  public createPriceMaterial(): void {
+  public createPriceMaterial (): void {
     this._loadingService.show()
 
     const newPricesMaterials: PriceMaterial[] = []
@@ -136,7 +136,6 @@ export class CreateComponent implements AfterViewInit, OnDestroy, OnInit {
       this._priceService.setNewPricesMaterials(newPricesMaterials)
       this._loadingService.hide()
     }, 2000)
-
   }
 
   private _setRequestsList (): void {
@@ -169,7 +168,6 @@ export class CreateComponent implements AfterViewInit, OnDestroy, OnInit {
       }
     })
   }
-
 
   private _clearForm (): void {
     this.priceForm.reset()

@@ -60,7 +60,7 @@
                 <mat-cell *matCellDef="let element" data-label="Situação">
                   <span class="badge" [class.badge-warning]="priceStatusEnum[element.status] === 'Em cotação'"
                     [class.badge-danger]="priceStatusEnum[element.status] === 'Cancelado'"
-                    [class.badge-success]="priceStatusEnum[element.status] === 'Concluído'">
+                    [class.badge-success]="priceStatusEnum[element.status] === 'Concluído' || priceStatusEnum[element.status] === 'Respondido'">
                     {{ priceStatusEnum[element.status] }}
                   </span>
                 </mat-cell>
