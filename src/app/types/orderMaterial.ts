@@ -1,8 +1,7 @@
-import { Material } from './material'
+import { RequestMaterial } from './material'
 
 export interface OrderMaterial {
+  material: RequestMaterial;
   orderId: number;
-  material: Material;
   unityPrice: number;
-  materialAmount: number;
 }

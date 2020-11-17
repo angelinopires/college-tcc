@@ -1,75 +1,38 @@
 <div class="main-content">
-    <form [formGroup]="requestMaterialForm" (submit)="addMaterial()">
-        <div class="row">
-            <div class="col-12 col-md-4">
-                <mat-form-field appearance="outline">
-                    <mat-label>Solicitante</mat-label>
-                    <input matInput disabled [value]="userLoggedIn?.name || '' ">
-                    <mat-icon matSuffix>face</mat-icon>
-                </mat-form-field>
-            </div>
-            <div class="col-12 col-md-4">
-                <mat-form-field appearance="outline">
-                    <mat-label>Materiais</mat-label>
-                    <mat-select formControlName="material" required>
-                        <mat-option *ngFor="let material of materialsList" [value]="material">{{ material.description }}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-            </div>
-            <div class="col-12 col-md-4">
-                <mat-form-field appearance="outline">
-                    <mat-label>Quantidade</mat-label>
-                    <input formControlName="amount" matInput placeholder="Quantidade" type="number" required>
-                </mat-form-field>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12 offset-md-10 col-md-2">
-                <button mat-raised-button class="btn-block" color="primary" type="submit"
-                    [disabled]="requestMaterialForm.invalid">Adicionar</button>
-            </div>
-        </div>
-    </form>
-
-    <div *ngIf="requestMaterials.length > 0" class="card mt-5">
-        <div class="card-header card-header-warning">
-            <h4 class="card-title">Preencha o formulário</h4>
+    <div class="card">
+        <div class="card-header card-header-info">
+            <h4 class="card-title">Passo 01 - Escolha o material e a quantidade</h4>
         </div>
         <div class="card-body">
-            <form [formGroup]="requestForm" (submit)="createRequest()">
+            <form [formGroup]="requestMaterialForm" (submit)="addMaterial()">
                 <div class="row">
-                    <div class="col-12 col-md-6">
+                    <div class="col-12 col-md-4">
                         <mat-form-field appearance="outline">
-                            <mat-label>Data desejada</mat-label>
-                            <input formControlName="desiredDate" [min]="minDate" matInput [matDatepicker]="picker"
-                                required readonly>
-                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                            <mat-datepicker #picker></mat-datepicker>
+                            <mat-label>Solicitante</mat-label>
+                            <input matInput disabled [value]="userLoggedIn?.name || '' ">
+                            <mat-icon matSuffix>face</mat-icon>
                         </mat-form-field>
                     </div>
-                    <div class="col-12 col-md-6">
+                    <div class="col-12 col-md-4">
                         <mat-form-field appearance="outline">
-                            <mat-label>Prioridade</mat-label>
-                            <mat-select formControlName="priority" required>
-                                <mat-option *ngFor="let priority of priorityList" [value]="priority">{{ priority }}
+                            <mat-label>Materiais</mat-label>
+                            <mat-select formControlName="material" required>
+                                <mat-option *ngFor="let material of materialsList" [value]="material">{{ material.description }}
                                 </mat-option>
                             </mat-select>
                         </mat-form-field>
                     </div>
-                    <div class="col-12">
+                    <div class="col-12 col-md-4">
                         <mat-form-field appearance="outline">
-                            <mat-label>Observações</mat-label>
-                            <textarea #autosize="cdkTextareaAutosize" cdkAutosizeMaxRows="5" cdkAutosizeMinRows="1"
-                                cdkTextareaAutosize formControlName="justification" matInput maxlength="80">
-                                    </textarea>
+                            <mat-label>Quantidade</mat-label>
+                            <input formControlName="amount" matInput placeholder="Quantidade" type="number" required>
                         </mat-form-field>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12 offset-md-10 col-md-2">
-                        <button mat-raised-button class="btn-block" color="primary" [disabled]="requestForm.invalid"
-                            type="submit">Enviar</button>
+                        <button mat-raised-button class="btn-block" color="primary" type="submit"
+                            [disabled]="requestMaterialForm.invalid">Adicionar</button>
                     </div>
                 </div>
             </form>
@@ -77,8 +40,8 @@
     </div>
 
     <div *ngIf="requestMaterials.length > 0" class="card mt-5">
-        <div class="card-header card-header-info">
-            <h4 class="card-title">Materiais escolhidos</h4>
+        <div class="card-header card-header-warning">
+            <h4 class="card-title">Passo 02 - Confira os materiais selecionados</h4>
         </div>
         <div class="card-body">
             <div class="table table-responsive mat-elevation-z8">
@@ -121,6 +84,50 @@
                     <mat-row class="table__row" *matRowDef="let element; columns: columnsToDisplay;"></mat-row>
                 </mat-table>
             </div>
+        </div>
+    </div>
+    
+    <div *ngIf="requestMaterials.length > 0" class="card mt-5">
+        <div class="card-header card-header-info">
+            <h4 class="card-title">Passo 03 - Escolha suas preferências</h4>
+        </div>
+        <div class="card-body">
+            <form [formGroup]="requestForm" (submit)="createRequest()">
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Data desejada</mat-label>
+                            <input formControlName="desiredDate" [min]="minDate" matInput [matDatepicker]="picker" required
+                                readonly>
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Prioridade</mat-label>
+                            <mat-select formControlName="priority" required>
+                                <mat-option *ngFor="let priority of priorityList" [value]="priority">{{ priority }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-12">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Observações</mat-label>
+                            <textarea #autosize="cdkTextareaAutosize" cdkAutosizeMaxRows="5" cdkAutosizeMinRows="1"
+                                cdkTextareaAutosize formControlName="justification" matInput maxlength="80">
+                                            </textarea>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 offset-md-10 col-md-2">
+                        <button mat-raised-button class="btn-block" color="primary" [disabled]="requestForm.invalid"
+                            type="submit">Enviar</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>

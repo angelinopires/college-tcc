@@ -26,8 +26,6 @@ export class AppComponent implements OnInit {
   ) { }
 
   public ngOnInit (): void {
-    this._storageService.clear()
-
     setTimeout(() => {
       this._materialService.initializeMaterials()
       this._orderService.initializeOrders()
