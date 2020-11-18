@@ -79,7 +79,7 @@ export class SidebarComponent implements OnInit {
       }
       default: {
         this.routes.push(
-          { path: '/cotacoes', title: 'Cotações',  icon:'request_quote', class: '' }
+          { path: '/externo', title: 'Área do fornecedor',  icon:'home_work', class: '' }
         )
         break
       }

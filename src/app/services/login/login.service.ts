@@ -44,12 +44,16 @@ export class LoginService {
         this._redirect('/pedidos')
         break
       }
+      case 2: {
+        this._redirect('/cotacoes')
+        break
+      }
       case 3: {
         this._redirect('/solicitacoes')
         break
       }
       default: {
-        this._redirect('/cotacoes')
+        this._redirect('/externo')
         break
       }
     }

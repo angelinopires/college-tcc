@@ -1,29 +1,32 @@
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
 
 // COMPONENTS
-import { CreateComponent, DashboardComponent } from '@prices/pages';
+import { AnswerPricesComponent, DashboardComponent } from './pages';
 
 // MODULES
+import { ExternalRoutingModule } from './external-routing.module';
 import { MaterialUiModule } from '@material-ui/material-ui.module';
 import { PipesModule } from '@pipes/pipes.module';
-import { PricesRoutingModule } from './prices-routing.module';
+import { RouterModule } from '@angular/router';
 import { SharedModule } from '@shared/shared.module';
 
+// GUARDS
+import { ExternalGuard } from '@guard';
+
 @NgModule({
-  declarations: [CreateComponent, DashboardComponent],
+  declarations: [AnswerPricesComponent, DashboardComponent],
   imports: [
     CommonModule,
+    ExternalRoutingModule,
     FormsModule,
     MaterialUiModule,
     PipesModule,
-    PricesRoutingModule,
     ReactiveFormsModule,
     RouterModule,
     SharedModule
-  ]
+  ],
+  providers: [ExternalGuard]
 })
-export class PricesModule {}
-
+export class ExternalModule { }
