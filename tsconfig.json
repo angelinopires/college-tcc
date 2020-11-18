@@ -22,6 +22,12 @@
       "@enums/*": [
         "src/app/enums/*"
       ],
+      "@external": [
+        "src/app/modules/external"
+      ],
+      "@external/*": [
+        "src/app/modules/external/*"
+      ],
       "@guard": [
         "src/app/guard"
       ],

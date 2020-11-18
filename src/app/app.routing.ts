@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 // GUARDS
-import { AdminGuardGuard, BasicGuardGuard, BuyerGuardGuard } from '@guard';
+import { AdminGuard, BasicGuard, BuyerGuard, ExternalGuard } from '@guard';
 
 const routes: Routes = [
   {
@@ -12,34 +12,39 @@ const routes: Routes = [
     loadChildren: './modules/authentication/authentication.module#AuthenticationModule'
   },
   {
-    canActivate: [AdminGuardGuard],
+    canActivate: [AdminGuard],
     path: 'usuarios',
     loadChildren: './modules/users/users.module#UsersModule'
   },
   {
-    canActivate: [BuyerGuardGuard],
+    canActivate: [BuyerGuard],
     path: 'cotacoes',
     loadChildren: './modules/prices/prices.module#PricesModule'
   },
   {
-    canActivate: [BasicGuardGuard],
+    canActivate: [BasicGuard],
     path: 'fornecedores',
     loadChildren: './modules/providers/providers.module#ProvidersModule'
   },
   {
-    canActivate: [BasicGuardGuard],
+    canActivate: [BasicGuard],
     path: 'materiais',
     loadChildren: './modules/materials/materials.module#MaterialsModule'
   },
   {
-    canActivate: [BuyerGuardGuard],
+    canActivate: [BuyerGuard],
     path: 'pedidos',
     loadChildren: './modules/orders/orders.module#OrdersModule'
   },
   {
-    canActivate: [BasicGuardGuard],
+    canActivate: [BasicGuard],
     path: 'solicitacoes',
     loadChildren: './modules/requests/requests.module#RequestsModule'
+  },
+  {
+    canActivate: [ExternalGuard],
+    path: 'externo',
+    loadChildren: './modules/external/external.module#ExternalModule'
   },
   { path: '**', redirectTo: '/', pathMatch: 'full' }
 ];

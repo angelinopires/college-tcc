@@ -11,7 +11,7 @@ import { User } from '@projectTypes/index'
 @Injectable({
   providedIn: 'root'
 })
-export class AdminGuardGuard implements CanActivate {
+export class AdminGuard implements CanActivate {
 
   constructor (private router: Router, private _storageService: StorageService) {}
 
