@@ -13,6 +13,7 @@ import { LoginService } from '@services/login/login.service';
 })
 export class LoginComponent {
   loginForm: FormGroup;
+  loginError: string = ''
 
   constructor (
     private _formBuilder: FormBuilder,
@@ -26,13 +27,14 @@ export class LoginComponent {
     }
 
   public onLoginSubmit(): void {
+    this.loginError = ''
     this._loadingService.show()
 
     if (this.loginForm.valid && this.loginForm.dirty) {
       const { email, password } = this.loginForm.value
 
       setTimeout(() => {
-        this._loginService.login(email, password)
+        this.loginError = this._loginService.login(email, password)
         this._loadingService.hide()
       }, 2000)
     }

@@ -22,6 +22,12 @@
       "@enums/*": [
         "src/app/enums/*"
       ],
+      "@guard": [
+        "src/app/guard"
+      ],
+      "@guard/*": [
+        "src/app/guard/*"
+      ],
       "@home": [
         "src/app/modules/home"
       ],

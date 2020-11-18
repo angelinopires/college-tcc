@@ -1,7 +1,19 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
-import { ROUTES } from '../sidebar/sidebar.component';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
+
+// SERVICES
+import { StorageService } from '@services/storage/storage.service';
+
+// TYPES
+import { User } from '@projectTypes/index';
+
+declare interface RouteInfo {
+  path: string;
+  title: string;
+  icon: string;
+  class: string;
+}
 
 @Component({
   selector: 'app-navbar',
@@ -14,16 +26,25 @@ export class NavbarComponent implements OnInit {
     private sidebarVisible: boolean;
     location: Location;
     mobile_menu_visible: any = 0;
+    routes: RouteInfo[] = [
+      { path: '/cotacoes', title: 'Cotações',  icon:'request_quote', class: '' }
+    ]
 
-    constructor(location: Location,  private element: ElementRef, private router: Router) {
+    constructor(
+      location: Location,
+      private _storageService: StorageService,
+      private element: ElementRef,
+      private router: Router
+    ) {
       this.location = location;
       this.sidebarVisible = false;
     }
 
     ngOnInit(){
+      this._getRoutesByPermission()
       const navbar: HTMLElement = this.element.nativeElement;
 
-      this.listTitles = ROUTES.filter(listTitle => listTitle);
+      this.listTitles = this.routes.filter(listTitle => listTitle);
       this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
 
       this.router.events.subscribe((event) => {
@@ -125,6 +146,42 @@ export class NavbarComponent implements OnInit {
       for (let item = 0; item < this.listTitles.length; item++) {
         if (title.includes(this.listTitles[item].path)) {
           return this.listTitles[item].title;
+        }
+      }
+    }
+
+    private _getRoutesByPermission (): void {
+      const userLoggedIn: User = JSON.parse(this._storageService.getItem('userLoggedIn'))
+
+      switch (userLoggedIn.permission.id) {
+        case 1: {
+          this.routes.push(
+            { path: '/materiais', title: 'Materiais',  icon:'list_alt', class: '' },
+            { path: '/fornecedores', title: 'Fornecedores',  icon:'local_shipping', class: '' },
+            { path: '/solicitacoes', title: 'Solicitações de Compras',  icon: 'content_paste', class: '' },
+            { path: '/pedidos', title: 'Pedidos de Compras',  icon:'shopping_bag', class: '' },
+            { path: '/usuarios', title: 'Usuários',  icon:'supervisor_account', class: '' }
+          )
+          break
+        }
+        case 2: {
+          this.routes.push(
+            { path: '/materiais', title: 'Materiais',  icon:'list_alt', class: '' },
+            { path: '/fornecedores', title: 'Fornecedores',  icon:'local_shipping', class: '' },
+            { path: '/solicitacoes', title: 'Solicitações de Compras',  icon: 'content_paste', class: '' },
+            { path: '/cotacoes', title: 'Cotações',  icon:'request_quote', class: '' },
+            { path: '/pedidos', title: 'Pedidos de Compras',  icon:'shopping_bag', class: '' }
+          )
+        }
+        case 3: {
+          this.routes.push(
+            { path: '/materiais', title: 'Materiais',  icon:'list_alt', class: '' },
+            { path: '/fornecedores', title: 'Fornecedores',  icon:'local_shipping', class: '' },
+            { path: '/solicitacoes', title: 'Solicitações de Compras',  icon: 'content_paste', class: '' }
+          )
+        }
+        default: {
+          break
         }
       }
     }

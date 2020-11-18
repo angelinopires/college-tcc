@@ -18,6 +18,8 @@
                         autocomplete="current-password" />
                 </mat-form-field>
 
+                <mat-error *ngIf="loginError">{{ loginError }}</mat-error>
+
                 <a class="login__forgotPassword" mat-button href="#">Esqueceu a senha?</a>
 
                 <button [disabled]="loginForm.invalid" mat-raised-button class="login__button" color="primary"
