@@ -10,9 +10,13 @@ registerLocaleData(localePt, 'pt');
 // COMPONENTS
 import { AppComponent } from './app.component';
 
+// GUARDS
+import { AdminGuardGuard, BasicGuardGuard, BuyerGuardGuard } from '@guard';
+
 // MODULES
 import { AppRoutingModule } from './app.routing';
 import { SharedModule } from '@shared/shared.module';
+
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -26,6 +30,7 @@ import { SharedModule } from '@shared/shared.module';
     HttpClientModule,
     RouterModule,
     SharedModule
-  ]
+  ],
+  providers: [AdminGuardGuard, BasicGuardGuard, BuyerGuardGuard]
 })
 export class AppModule { }

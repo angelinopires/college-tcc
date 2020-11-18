@@ -1,23 +1,20 @@
 import { Component, OnInit } from '@angular/core';
+
+// SERVICES
 import { LoginService } from '@services/login/login.service';
+import { StorageService } from '@services/storage/storage.service';
+
+// TYPES
+import { User } from '@projectTypes/index';
 
 declare const $: any;
 
 declare interface RouteInfo {
-    path: string;
-    title: string;
-    icon: string;
-    class: string;
+  path: string;
+  title: string;
+  icon: string;
+  class: string;
 }
-
-export const ROUTES: RouteInfo[] = [
-  { path: '/materiais', title: 'Materiais',  icon:'list_alt', class: '' },
-  { path: '/fornecedores', title: 'Fornecedores',  icon:'local_shipping', class: '' },
-  { path: '/solicitacoes', title: 'Solicitações de Compras',  icon: 'content_paste', class: '' },
-  { path: '/cotacoes', title: 'Cotações',  icon:'request_quote', class: '' },
-  { path: '/pedidos', title: 'Pedidos de Compras',  icon:'shopping_bag', class: '' },
-  { path: '/usuarios', title: 'Usuários',  icon:'supervisor_account', class: '' }
-];
 
 @Component({
   selector: 'app-sidebar',
@@ -26,19 +23,66 @@ export const ROUTES: RouteInfo[] = [
 })
 
 export class SidebarComponent implements OnInit {
+  routes: RouteInfo[] = []
   menuItems: any[];
 
-  constructor(private _loginService: LoginService) { }
+  constructor(
+    private _loginService: LoginService,
+    private _storageService: StorageService
+  ) { }
 
-  ngOnInit(): void {
-    this.menuItems = ROUTES.filter(menuItem => menuItem);
+  public ngOnInit(): void {
+    this._getRoutesByPermission()
+    this.menuItems = this.routes.filter(menuItem => menuItem);
   }
 
-  isMobileMenu(): boolean {
+  public isMobileMenu(): boolean {
     return $(window).width() <= 992
   }
 
-  logout (): void {
+  public logout (): void {
     this._loginService.logout()
+  }
+
+  private _getRoutesByPermission (): void {
+    const userLoggedIn: User = JSON.parse(this._storageService.getItem('userLoggedIn'))
+
+    switch (userLoggedIn.permission.id) {
+      case 1: {
+        this.routes.push(
+          { path: '/materiais', title: 'Materiais',  icon:'list_alt', class: '' },
+          { path: '/fornecedores', title: 'Fornecedores',  icon:'local_shipping', class: '' },
+          { path: '/solicitacoes', title: 'Solicitações de Compras',  icon: 'content_paste', class: '' },
+          { path: '/pedidos', title: 'Pedidos de Compras',  icon:'shopping_bag', class: '' },
+          { path: '/cotacoes', title: 'Cotações',  icon:'request_quote', class: '' },
+          { path: '/usuarios', title: 'Usuários',  icon:'supervisor_account', class: '' }
+        )
+        break
+      }
+      case 2: {
+        this.routes.push(
+          { path: '/materiais', title: 'Materiais',  icon:'list_alt', class: '' },
+          { path: '/fornecedores', title: 'Fornecedores',  icon:'local_shipping', class: '' },
+          { path: '/solicitacoes', title: 'Solicitações de Compras',  icon: 'content_paste', class: '' },
+          { path: '/cotacoes', title: 'Cotações',  icon:'request_quote', class: '' },
+          { path: '/pedidos', title: 'Pedidos de Compras',  icon:'shopping_bag', class: '' }
+        )
+        break
+      }
+      case 3: {
+        this.routes.push(
+          { path: '/materiais', title: 'Materiais',  icon:'list_alt', class: '' },
+          { path: '/fornecedores', title: 'Fornecedores',  icon:'local_shipping', class: '' },
+          { path: '/solicitacoes', title: 'Solicitações de Compras',  icon: 'content_paste', class: '' }
+        )
+        break
+      }
+      default: {
+        this.routes.push(
+          { path: '/cotacoes', title: 'Cotações',  icon:'request_quote', class: '' }
+        )
+        break
+      }
+    }
   }
 }

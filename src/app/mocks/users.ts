@@ -12,37 +12,46 @@ export class Users {
       {
         id: 1,
         name: "Henrique Pinheiro",
-        email: "henrique@email.com.br",
+        email: "henrique@steelcorporation.com.br",
         active: true,
-        password: "Senha@2020",
+        password: "123456",
         permission: this.permissions.getPermissionById(1),
         department: this.departments.getDepartmentById(1)
       },
       {
           id: 2,
           name: "Acacio Junior",
-          email: "acacio@email.com.br",
+          email: "acacio@steelcorporation.com.br",
           active: false,
-          password: "Senha@2020",
+          password: "123456",
           permission: this.permissions.getPermissionById(2),
           department: this.departments.getDepartmentById(2)
       },
       {
           id: 3,
           name: "Angelino Oliveira",
-          email: "angelino@email.com.br",
+          email: "angelino@steelcorporation.com.br",
           active: true,
-          password: "Senha@2020",
-          permission: this.permissions.getPermissionById(3),
+          password: "123456",
+          permission: this.permissions.getPermissionById(4),
           department: this.departments.getDepartmentById(3)
       },
       {
           id: 4,
           name: "Gilson Aparecido",
-          email: "gilson@email.com.br",
+          email: "gilson@steelcorporation.com.br",
           active: false,
-          password: "Senha@2020",
-          permission: this.permissions.getPermissionById(4),
+          password: "123456",
+          permission: this.permissions.getPermissionById(3),
+          department: this.departments.getDepartmentById(4)
+      },
+      {
+          id: 5,
+          name: "Gerente de Compras",
+          email: "user@steelcorporation.com.br",
+          active: false,
+          password: "123456",
+          permission: this.permissions.getPermissionById(1),
           department: this.departments.getDepartmentById(4)
       }
     ]

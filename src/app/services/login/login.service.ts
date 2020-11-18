@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 // SERVICES
 import { RequestService } from '@services/request/request.service';
 import { StorageService } from '@services/storage/storage.service';
+import { UserService } from '@services/user/user.service';
 
 // TYPES
 import { User } from '@projectTypes/index'
@@ -19,40 +20,39 @@ export class LoginService {
   private _userLoggedInSubject = new BehaviorSubject<User>({} as User);
   public userLoggedIn = this._userLoggedInSubject.asObservable().pipe(distinctUntilChanged());
 
+  userList: User[] = []
+
   constructor(
+    private _userService: UserService,
     private _router: Router,
     private _storageService: StorageService,
-  ) { }
+  ) {}
 
-  public login (email: string, password: string): void {
-    const user: User = {
-      id: 1,
-      name: "Gerente de Compras",
-      email,
-      active: true,
-      permission: {
-        id: 1,
-        description: "Administrador"
-      },
-      department: {
-        id: 1,
-        manager: {
-          id: 1,
-          name: "Henrique Pinheiro",
-          email: "henrique@email.com.br",
-          active: true,
-          permission: {
-            id: 1,
-            description: "Administrador"
-          },
-        },
-        description: "Departamento de Compras",
-        active: true
-      }
+  public login (email: string, password: string): string {
+    this.userList = this._userService.getUsersFromStorage()
+
+    const userFounded = this.userList.find(user => user.email === email && user.password === password)
+
+    if (!userFounded) {
+      return 'E-mail ou ou senha estão incorretos.'
     }
 
-    this._setUserLoggedIn(user)
-    this._redirect('/solicitacoes')
+    this._setUserLoggedIn(userFounded)
+
+    switch (userFounded.permission.id) {
+      case 1: {
+        this._redirect('/pedidos')
+        break
+      }
+      case 3: {
+        this._redirect('/solicitacoes')
+        break
+      }
+      default: {
+        this._redirect('/cotacoes')
+        break
+      }
+    }
   }
 
   public logout (): void {
