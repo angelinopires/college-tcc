@@ -53,8 +53,8 @@ export class SidebarComponent implements OnInit {
           { path: '/materiais', title: 'Materiais',  icon:'list_alt', class: '' },
           { path: '/fornecedores', title: 'Fornecedores',  icon:'local_shipping', class: '' },
           { path: '/solicitacoes', title: 'Solicitações de Compras',  icon: 'content_paste', class: '' },
-          { path: '/pedidos', title: 'Pedidos de Compras',  icon:'shopping_bag', class: '' },
           { path: '/cotacoes', title: 'Cotações',  icon:'request_quote', class: '' },
+          { path: '/pedidos', title: 'Pedidos de Compras',  icon:'shopping_bag', class: '' },
           { path: '/usuarios', title: 'Usuários',  icon:'supervisor_account', class: '' }
         )
         break

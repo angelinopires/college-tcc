@@ -9,11 +9,11 @@
       </mat-form-field>
     </div>
 
-    <div class="col-12 col-md-3 mr-1 d-flex justify-content-end">
+    <!-- <div class="col-12 col-md-3 mr-1 d-flex justify-content-end">
       <button color="primary" rel="tooltip" mat-fab matTooltip="Adicionar fornecedor">
         <i class="material-icons">add</i>
       </button>
-    </div>
+    </div> -->
   </div>
   <div class="row">
     <div class="col-12">
@@ -68,7 +68,7 @@
                 </mat-cell>
               </ng-container>
 
-              <ng-container matColumnDef="actions">
+              <!-- <ng-container matColumnDef="actions">
                 <mat-header-cell *matHeaderCellDef>Ações</mat-header-cell>
                 <mat-cell class="td-actions text-center" *matCellDef="let element" data-label="Ações">
                   <div class="btn-group">
@@ -80,7 +80,7 @@
                     </button>
                   </div>
                 </mat-cell>
-              </ng-container>
+              </ng-container> -->
 
               <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
               <mat-row *matRowDef="let element; columns: columnsToDisplay;"></mat-row>

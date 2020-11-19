@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 // COMPONENTS
+import { DoubleConfirmModalComponent, FeedbackModalComponent } from '@shared/components';
 import { LoadingComponent } from './components/loading/loading.component';
 import { MainStructureComponent } from './components/main-structure/main-structure.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -13,7 +14,6 @@ import { MaterialUiModule } from '@material-ui/material-ui.module';
 
 // SERVICES
 import { LoginService } from '@services/login/login.service';
-import { FeedbackModalComponent } from './components/feedback-modal/feedback-modal.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,8 @@ import { FeedbackModalComponent } from './components/feedback-modal/feedback-mod
     MainStructureComponent,
     NavbarComponent,
     SidebarComponent,
-    FeedbackModalComponent
+    FeedbackModalComponent,
+    DoubleConfirmModalComponent,
   ],
   exports: [
     LoadingComponent,

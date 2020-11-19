@@ -12,6 +12,16 @@
   .badge {
     font-size: 0.8rem;
     letter-spacing: 1px;
+
+    &.badge--large {
+      width: 100%;
+      font-size: 1.5rem;
+
+      @media only screen and (min-width: $screen-tablet-landscape) {
+        margin-top: 0.2rem;
+        padding: 0.8rem 0;
+      }
+    }
   }
 
   .feedback {
@@ -55,6 +65,10 @@
 
       &.table__row--disabled {
         background-color: #dedede;
+      }
+
+      .mat-form-field {
+        max-width: 135px;
       }
     }
 

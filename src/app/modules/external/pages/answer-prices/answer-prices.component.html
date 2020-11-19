@@ -1,1 +1,112 @@
-<p>answer-prices works!</p>
+<div class="main-content">
+  <div class="row justify-content-between">
+    <div class="col-12 col-md-3">
+      <mat-form-field appearance="outline">
+        <mat-label>Pesquisar</mat-label>
+        <input matInput placeholder="Observação, Situação" (keyup)="applyFilter($event.target.value)">
+        <mat-icon matSuffix>search</mat-icon>
+        <mat-hint>Exemplo: Em andamento</mat-hint>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header card-header-info">
+      <h4 class="card-title">Passo 01</h4>
+      <p class="card-category">Insira os valores de cada material</p>
+    </div>
+    <div class="card-body">
+      <div class="table table-responsive mat-elevation-z8">
+        <mat-table matSortDisableClear matSortActive="id" matSortDirection="asc" [dataSource]="dataSource" matSort>
+          <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>#</mat-header-cell>
+            <mat-cell *matCellDef="let element" data-label="#">
+              {{ element.id }}
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="description">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Observação</mat-header-cell>
+            <mat-cell *matCellDef="let element" data-label="Observação">
+              {{ element.description }}
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="unityType">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Tipo de Unidade</mat-header-cell>
+            <mat-cell *matCellDef="let element" data-label="Tipo de Unidade">
+              {{ element.unity }}
+            </mat-cell>
+          </ng-container>
+
+
+          <ng-container matColumnDef="amount">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Quantidade</mat-header-cell>
+            <mat-cell *matCellDef="let element" data-label="Quantidade">
+              {{ element.amount }}
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="price">
+            <mat-header-cell *matHeaderCellDef>Preco</mat-header-cell>
+            <mat-cell *matCellDef="let element" data-label="Preco">
+              <div>
+                <mat-form-field appearance="outline">
+                  <mat-label>Preco</mat-label>
+                  <input (input)="onInputChange($event.target.value, element)" matInput placeholder="R$ 00,00" required
+                    type="number" />
+                </mat-form-field>
+              </div>
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="subtotal">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Subtotal</mat-header-cell>
+            <mat-cell *matCellDef="let element" data-label="Subtotal">
+              {{ (element.amount * getPriceOfMaterialById(element.id)) | currencyBrl }}
+            </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+          <mat-row class="table__row" *matRowDef="let element; columns: columnsToDisplay;">
+          </mat-row>
+        </mat-table>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="isEveryMaterialFullfiled()" class="card">
+    <div class="card-header card-header-warning">
+      <h4 class="card-title">Passo 02</h4>
+      <p class="card-category">Insira o valor do frente e confira o total</p>
+    </div>
+    <form class="card-body" [formGroup]="priceForm" (submit)="sendPrices()">
+      <div class="row">
+        <div class="col-12 col-md-4">
+          <mat-form-field appearance="outline">
+            <mat-label>Valor do frete</mat-label>
+            <input matInput placeholder="R$ 00.00" formControlName="fare" required>
+          </mat-form-field>
+        </div>
+        <div class="col-12 col-md-4">
+          <mat-form-field appearance="outline">
+            <mat-label>Data de entrega</mat-label>
+            <input formControlName="suggestedDate" [min]="minDate" matInput [matDatepicker]="picker" required readonly>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="col-12 col-md-4">
+          <p class="badge badge-warning badge--large">Total: {{ getTotalPrice() | currencyBrl }}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 offset-md-10 col-md-2">
+          <button mat-raised-button class="btn-block" color="primary" [disabled]="priceForm.invalid"
+            type="submit">Enviar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+</div>

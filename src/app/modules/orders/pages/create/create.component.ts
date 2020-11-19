@@ -83,7 +83,7 @@ export class CreateComponent implements AfterViewInit, OnDestroy, OnInit {
         fare,
         id: this._orderService.getLastOrderId() + 1,
         provider: provider,
-        status: "VALIDATION"
+        status: "SENDED"
       }
 
       const priceMaterials = this.getMaterialsPrices(id)
@@ -121,6 +121,12 @@ export class CreateComponent implements AfterViewInit, OnDestroy, OnInit {
 
   public providerHasMaterialPrices (priceId: number): boolean {
     return this.getMaterialsPrices(priceId).length > 0
+  }
+
+  public subTotal (amount: number, price: number): number {
+    if (!amount || !price) return 0
+
+    return Number(amount) * Number(price)
   }
 
   public getTotalPrice (): number {

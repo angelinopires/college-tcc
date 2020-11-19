@@ -13,7 +13,7 @@ import { ProvidersService } from '@services/providers/providers.service';
 })
 export class DashboardComponent implements AfterViewInit, OnDestroy, OnInit {
   dataSource = new MatTableDataSource();
-  columnsToDisplay = ['id', 'name', 'city', 'salesman', 'phone', 'mobile', 'actions'];
+  columnsToDisplay = ['id', 'name', 'city', 'salesman', 'phone', 'mobile'];
   @ViewChild(MatSort) sort: MatSort;
 
   providerSubscription: Subscription

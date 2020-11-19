@@ -61,7 +61,8 @@ export class DashboardComponent implements AfterViewInit, OnDestroy, OnInit {
     const materialsPrices = this.getMaterialsPrices(priceId)
 
     materialsPrices.map(materialPrice => {
-      total += materialPrice.material.amount * materialPrice.unityPrice
+      if (!materialPrice.unityPrice) return
+      total += Number(materialPrice.material.amount) * Number(materialPrice.unityPrice)
     })
 
     return total

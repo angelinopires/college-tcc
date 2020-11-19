@@ -109,7 +109,7 @@ export class PricesMaterials {
         request: this.requests.getRequestWithoutMaterials(3)
       },
       {
-        material: this.materials.getRequestMaterialById(4),
+        material: this.materials.getRequestMaterialById(5),
         priceId: 5,
         provider: this.providers.getProviderById(5),
         request: this.requests.getRequestWithoutMaterials(3)

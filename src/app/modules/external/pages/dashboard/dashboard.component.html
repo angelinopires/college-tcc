@@ -83,16 +83,18 @@
                                         <table class="table table-responsive table--expanded">
                                             <thead>
                                                 <tr>
-                                                    <th scope="col">Fornecedor</th>
+                                                    <th scope="col">#</th>
                                                     <th scope="col">Material</th>
                                                     <th scope="col">Quantidade</th>
+                                                    <th scope="col">Grupo</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr *ngFor="let materialPrice of getMaterialsPrices(element.id)">
-                                                    <td scope="row">{{ materialPrice.provider.companyName }}</td>
+                                                    <td scope="row">{{ materialPrice.material.id }}</td>
                                                     <td>{{ materialPrice.material.description }}</td>
                                                     <td>{{ materialPrice.material.amount }}</td>
+                                                    <td>{{ materialPrice.material.group.description }}</td>
                                                 </tr>
                                             </tbody>
                                         </table>

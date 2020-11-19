@@ -21,18 +21,15 @@ export class AppComponent implements OnInit {
     private _priceService: PriceService,
     private _providerService: ProvidersService,
     private _requestService: RequestService,
-    private _storageService: StorageService,
     private _userService: UserService
   ) { }
 
   public ngOnInit (): void {
-    setTimeout(() => {
-      this._materialService.initializeMaterials()
-      this._orderService.initializeOrders()
-      this._priceService.initializePrices()
-      this._providerService.initializeProviders()
-      this._requestService.initializeRequests()
-      this._userService.initializeUsers()
-    }, 500)
+    this._materialService.initializeMaterials()
+    this._orderService.initializeOrders()
+    this._priceService.initializePrices()
+    this._providerService.initializeProviders()
+    this._requestService.initializeRequests()
+    this._userService.initializeUsers()
   }
 }

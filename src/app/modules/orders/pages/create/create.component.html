@@ -126,7 +126,7 @@
                                             <td>{{ materialPrice.material.description }}</td>
                                             <td>{{ materialPrice.material.amount }}</td>
                                             <td>{{ materialPrice.unityPrice | currencyBrl }}</td>
-                                            <td>{{ (materialPrice.unityPrice * materialPrice.material.amount) | currencyBrl }}
+                                            <td>{{ subTotal(materialPrice.unityPrice, materialPrice.material.amount) | currencyBrl }}
                                             </td>
                                         </tr>
                                     </tbody>
@@ -190,7 +190,7 @@
                     <ng-container matColumnDef="price">
                         <mat-header-cell *matHeaderCellDef mat-sort-header>Preco</mat-header-cell>
                         <mat-cell *matCellDef="let element" data-label="Preco">
-                            {{ element.material.unityPrice | currencyBrl }}
+                            {{ element.unityPrice | currencyBrl }}
                         </mat-cell>
                         <mat-footer-cell *matFooterCellDef>
                             <strong>Total</strong>
@@ -200,7 +200,7 @@
                     <ng-container matColumnDef="subtotal">
                         <mat-header-cell *matHeaderCellDef mat-sort-header>Subtotal</mat-header-cell>
                         <mat-cell *matCellDef="let element" data-label="Subtotal">
-                            {{ (element.unityPrice * element.material.amount) | currencyBrl }}
+                            {{ subTotal(element.unityPrice, element.material.amount) | currencyBrl }}
                         </mat-cell>
                         <mat-footer-cell *matFooterCellDef="let element">
                             {{ getTotalPrice() | currencyBrl }}
