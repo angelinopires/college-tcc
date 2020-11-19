@@ -24,7 +24,6 @@ export class ExternalGuard implements CanActivate {
       const { id } = userLoggedIn.permission
 
       switch (id) {
-        case 1: return true
         case 4: return true
         default: return false
       }

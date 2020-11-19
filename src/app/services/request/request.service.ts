@@ -54,6 +54,20 @@ export class RequestService {
     return requests[requests.length - 1].id
   }
 
+  public setRequestStatus(id: number, status: string): void {
+    const requestsFromStorage = this.getRequestsFromStorage()
+    const request = requestsFromStorage.find(request => request.id === id)
+    const requestIndex = requestsFromStorage.findIndex(request => request.id === id)
+
+    if (!request) return
+
+    request.status = status
+    requestsFromStorage[requestIndex] = request
+
+    this._setRequestsSubject(requestsFromStorage)
+    this._setLocalStorage(requestsFromStorage)
+  }
+
   private _setRequestsSubject (requests: Request[]): void {
     this._requestsSubject.next(requests)
   }

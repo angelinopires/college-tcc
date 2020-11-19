@@ -10,7 +10,7 @@ import { PricesMaterials } from '@mocks/pricesMaterials';
 import { StorageService } from '@services/storage/storage.service';
 
 // TYPES
-import { Price, PriceMaterial } from '@projectTypes/index'
+import { MaterialPrice, Price, PriceMaterial } from '@projectTypes/index'
 
 @Injectable({
   providedIn: 'root'
@@ -82,6 +82,34 @@ export class PriceService {
 
     this._setPricesMaterialsLocalStorage(pricesMaterials)
     this._setPricesMaterialsSubject(pricesMaterials)
+  }
+
+  public updatePricesMaterials (pricesMaterials: MaterialPrice[], priceId: number, providerId: number): void {
+    if (!pricesMaterials || pricesMaterials.length <= 0) return
+
+    const pricesMaterialsFromStorage = this.getPricesMaterialsFromStorage()
+    const newPricesMaterials = pricesMaterialsFromStorage.map(priceMaterial => {
+      if (priceMaterial.priceId === priceId && priceMaterial.provider.id === providerId) {
+        const materialToUpdate = pricesMaterials.find(material => material.id === priceMaterial.material.id)
+        priceMaterial.unityPrice = materialToUpdate.unityPrice
+      }
+
+      return priceMaterial
+    })
+
+    this._setPricesMaterialsSubject(newPricesMaterials)
+    this._setPricesMaterialsLocalStorage(newPricesMaterials)
+  }
+
+  public updatePrice (price: Price): void {
+    if (!price) return
+
+    const prices = this.getPricesFromStorage()
+    const priceIndex = prices.findIndex(pr => pr.id === price.id)
+    prices[priceIndex] = price
+
+    this._setPricesSubject(prices)
+    this._setPricesLocalStorage(prices)
   }
 
   public setPriceStatus(id: number, status: string): void {

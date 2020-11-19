@@ -16,3 +16,7 @@ export interface Material {
 export interface RequestMaterial extends Material {
   amount: number;
 }
+
+export interface MaterialPrice extends RequestMaterial {
+  unityPrice: number;
+}

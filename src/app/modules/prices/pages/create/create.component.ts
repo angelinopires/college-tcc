@@ -11,14 +11,14 @@ import * as moment from 'moment';
 import { FeedbackModalComponent } from '@shared/components';
 
 // SERVICES
+import { LoadingService } from '@services/loading/loading.service';
+import { PriceService } from '@services/price/price.service';
 import { ProvidersService } from '@services/providers/providers.service';
 import { RequestService } from '@services/request/request.service';
-import { Price, PriceMaterial, Provider, Request, RequestMaterial, RequestWOMaterial } from '@projectTypes/index';
 
 // TYPES
+import { Price, PriceMaterial, Provider, Request, RequestMaterial, RequestWOMaterial } from '@projectTypes/index';
 import { RequestStatus, RequestPriority } from '@enums'
-import { PriceService } from '@services/price/price.service';
-import { LoadingService } from '@services/loading/loading.service';
 
 interface MaterialRequest {
   material: RequestMaterial;

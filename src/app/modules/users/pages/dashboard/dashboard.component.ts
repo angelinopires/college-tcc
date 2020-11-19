@@ -15,7 +15,7 @@ import { UserService } from '@services/user/user.service';
 export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
   usersSubscription: Subscription
   dataSource = new MatTableDataSource();
-  columnsToDisplay = ['id', 'name', 'email', 'department', 'permission', 'active', 'actions'];
+  columnsToDisplay = ['id', 'name', 'email', 'department', 'permission', 'active'];
 
   @ViewChild(MatSort) sort: MatSort;
 

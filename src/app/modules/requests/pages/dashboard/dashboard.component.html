@@ -91,18 +91,19 @@
                                             mat-raised-button matTooltip="Visualizar Materiais" rel="tooltip" type="button">
                                             <i class="material-icons">table_view</i>
                                         </button>
-                                        <button *ngIf="requestStatusEnums[element.status] === 'Em análise'" class="btn btn-success" rel="tooltip"
-                                            mat-raised-button matTooltip="Aprovar" type="button">
-                                            <i class="material-icons">done</i>
-                                        </button>
-                                        <button class="btn btn-warning" rel="tooltip" mat-raised-button matTooltip="Editar" type="button">
-                                            <i class="material-icons">edit</i>
-                                        </button>
-                                        <button class="btn btn-danger" rel="tooltip" mat-raised-button matTooltip="Excluir" type="button">
-                                            <i class="material-icons">close</i>
-                                        </button>
-                                        </div>
-                                        </mat-cell>
+                                        <ng-template [ngIf]="isAbleToManageRequest(element.status)">
+                                            <button (click)="openDoubleCheck(element.id, true)" class="btn btn-success" rel="tooltip"
+                                                mat-raised-button matTooltip="Aprovar" type="button">
+                                                <i class="material-icons">done</i>
+                                            </button>
+                                            <button (click)="openDoubleCheck(element.id, false)" class="btn btn-danger" rel="tooltip" mat-raised-button
+                                                matTooltip="Recusar" type="button">
+                                                <i class="material-icons">close</i>
+                                            </button>
+                                        </ng-template>
+                                        <!-- <button class="btn btn-warning" rel="tooltip" mat-raised-button matTooltip="Editar" type="button"></button> -->
+                                    </div>
+                                </mat-cell>
                             </ng-container>
 
                             <ng-container matColumnDef="expandedRequest">

@@ -1,10 +1,12 @@
-import { User, UserManager } from '@projectTypes/index'
 import { Departments } from './departments'
 import { Permissions } from './permissions'
+import { Providers } from './providers'
+import { User } from '@projectTypes/index'
 
 export class Users {
   departments = new Departments()
   permissions = new Permissions()
+  providers = new Providers()
   users: User[] = []
 
   constructor () {
@@ -13,7 +15,7 @@ export class Users {
         id: 1,
         name: "Henrique Pinheiro",
         email: "henrique@steelcorporation.com.br",
-        active: true,
+        active: false,
         password: "123456",
         permission: this.permissions.getPermissionById(1),
         department: this.departments.getDepartmentById(1)
@@ -22,7 +24,7 @@ export class Users {
           id: 2,
           name: "Acacio Junior",
           email: "acacio@steelcorporation.com.br",
-          active: false,
+          active: true,
           password: "123456",
           permission: this.permissions.getPermissionById(2),
           department: this.departments.getDepartmentById(2)
@@ -34,13 +36,13 @@ export class Users {
           active: true,
           password: "123456",
           permission: this.permissions.getPermissionById(4),
-          department: this.departments.getDepartmentById(3)
+          department: this.providers.getProviderById(3)
       },
       {
           id: 4,
           name: "Gilson Aparecido",
           email: "gilson@steelcorporation.com.br",
-          active: false,
+          active: true,
           password: "123456",
           permission: this.permissions.getPermissionById(3),
           department: this.departments.getDepartmentById(4)
@@ -49,7 +51,7 @@ export class Users {
           id: 5,
           name: "Gerente de Compras",
           email: "user@steelcorporation.com.br",
-          active: false,
+          active: true,
           password: "123456",
           permission: this.permissions.getPermissionById(1),
           department: this.departments.getDepartmentById(4)

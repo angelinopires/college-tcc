@@ -6,9 +6,10 @@ import { Subscription } from 'rxjs';
 
 // SERVICES
 import { PriceService } from '@services/price/price.service'
+import { StorageService } from '@services/storage/storage.service';
 
 // TYPES
-import { PriceMaterial } from '@projectTypes/index'
+import { PriceMaterial, User } from '@projectTypes/index'
 import { PriceStatus } from '@enums'
 
 @Component({
@@ -32,10 +33,14 @@ export class DashboardComponent implements AfterViewInit, OnDestroy, OnInit {
   pricesMaterialSubscription: Subscription
 
   pricesMaterialsList: PriceMaterial[] = []
+  userLoggedIn: User
 
-  constructor (private _priceService: PriceService) {}
+  constructor (private _priceService: PriceService, private _storageSerivce: StorageService) {}
 
   public ngOnInit (): void {
+    const user = JSON.parse(this._storageSerivce.getItem('userLoggedIn'))
+    this.userLoggedIn = user
+
     this._setPricesList()
   }
 
@@ -63,7 +68,6 @@ export class DashboardComponent implements AfterViewInit, OnDestroy, OnInit {
       if (prices.length <= 0) return
 
       const filteredPrices = prices.filter(price => price.status === 'WAITING')
-
       this.dataSource = new MatTableDataSource(filteredPrices)
     })
 
@@ -71,7 +75,8 @@ export class DashboardComponent implements AfterViewInit, OnDestroy, OnInit {
     this.pricesMaterialSubscription = this._priceService.pricesMaterials.subscribe(pricesMaterials => {
       if (pricesMaterials.length <= 0) return
 
-      this.pricesMaterialsList = pricesMaterials
+      const filteredPricesMaterialsList = pricesMaterials.filter(priceMaterial => priceMaterial.provider.id === this.userLoggedIn.department.id)
+      this.pricesMaterialsList = filteredPricesMaterialsList
     })
   }
 }
